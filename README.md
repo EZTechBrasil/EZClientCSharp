@@ -11,6 +11,7 @@ To install the EZClientC# project follow these steps:
 
 ## Step 2 - Requirements for execution:
 
+• Win32
 [![.NetFramework.h](https://img.shields.io/badge/.NetFramework-3.5-green.svg)](https://www.microsoft.com/pt-br/download/details.aspx?id=25150)
 
 ## Step 3 - Installing a virtual simulator with manual or automatic deliveries:
