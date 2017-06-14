@@ -11,7 +11,7 @@ To install the EZClientC# project follow these steps:
 
 ## Step 2 - Requirements for execution:
 
-[![.NetFramework.h](https://img.shields.io/badge/stdio-release-green.svg)](https://img.shields.io/badge/.NetFramework-3.5-green.svg)
+[![.NetFramework.h](https://img.shields.io/badge/.NetFramework-3.5-green.svg)](https://www.microsoft.com/pt-br/download/details.aspx?id=25150)
 
 ## Step 3 - Installing a virtual simulator with manual or automatic deliveries:
 
@@ -22,7 +22,7 @@ To install the EZClientC# project follow these steps:
 ## Step 4 - Configuring and Running
 
 Run the application and see it consuming the EZServer information.
-[![EZClientCSharp](https://github.com/EZTechBrasil/EZClientCpp/blob/Eric/Pictures/EZClientCpp.png)](https://github.com/EZTechBrasil/EZClientCpp/blob/Eric/Pictures/EZClientCpp.png)
+[![EZClientCSharp](https://github.com/EZTechBrasil/EZClientCSharp/blob/Eric/EZClientCSharp.png)](https://github.com/EZTechBrasil/EZClientCSharp/blob/Eric/EZClientCSharp.png)
 
 ## API Reference
 
