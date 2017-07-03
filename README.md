@@ -31,3 +31,9 @@ Run the application and see it consuming the EZServer information.
 For more details on APIs, download the development manual.
 
 [![Quickstart Manual](https://github.com/EZTechBrasil/EZClientCpp/blob/Eric/Pictures/Developer.png)](http://www.execweb.com.br/eztech/EZAdmin/downloads/ManualDesenvolvimento.pdf)
+
+## Issues
+
+Questions, report bugs and suggestions
+
+[![Issues](https://github.com/EZTechBrasil/EZClientCpp/blob/Eric/Pictures/issues2.png)](https://github.com/EZTechBrasil/EZClientCSharp/issues)
