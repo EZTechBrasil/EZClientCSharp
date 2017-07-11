@@ -1,3 +1,5 @@
+<img src="https://github.com/EZTechBrasil/EZTechInstalls/blob/master/img-header-00.png" width="100%"/>
+
 # EZClientC# #
 
 This project aims to assist partners in integrating with the EZTech service, using the APIs in a simple and practical way to serve as an example for a new integration.
