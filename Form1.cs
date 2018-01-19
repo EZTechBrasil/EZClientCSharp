@@ -46,7 +46,6 @@ namespace EZClientCSharp
             // Le versao da EZClient.dll
             EZInterface.DllVersion(ref version);
             WriteMessage(version);
-
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -1428,6 +1427,11 @@ namespace EZClientCSharp
             Valor1 = Convert.ToDouble(edPrice1.Text);
             Valor2 = Convert.ToDouble(edPrice2.Text);
 
+            if (Valor2 == 0)
+            {
+                Valor2 = Valor1;
+            }
+
             WriteMessage("--- Bomba " + Bomba + " - Troca de precos");
 
             // Verifica conexao
@@ -1519,5 +1523,39 @@ namespace EZClientCSharp
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int Bomba;
+
+            Bomba = cbPump.SelectedIndex + 1; 
+
+            EZInterface.TempStop(Bomba);
+        }
+
+        private void buttonDesativar_Click(object sender, EventArgs e)
+        {
+            int Bomba = 0;
+            int IdBomba = 0;
+            int num = 0;
+
+            Bomba = cbPump.SelectedIndex + 1;   // Le o numero da bomba
+
+            // Verifica conexao
+            if (!GoodResult(EZInterface.TestConnection()))
+                return;
+
+            if (!GoodResult(EZInterface.GetHoseByOrdinal(Bomba, ref IdBomba)))
+                return;
+            if (!GoodResult(EZInterface.DisablePump(IdBomba)))
+                return;
+            if (!GoodResult(EZInterface.GetHosesCount(ref num)))
+                return;
+            WriteMessage("aqui está " + num);
+
+
+            // Envia Autorizacao para bomba
+            //if (GoodResult(EZInterface.Authorise(IdBomba)))
+            //    WriteMessage("--- Bomba " + Bomba + " Autorizada!");
+        }
     }
 }

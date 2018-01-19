@@ -55,6 +55,8 @@
             this.btTotals = new System.Windows.Forms.Button();
             this.btReadCards = new System.Windows.Forms.Button();
             this.listMessageBox = new System.Windows.Forms.ListBox();
+            this.buttonFinalizarAbastecimento = new System.Windows.Forms.Button();
+            this.buttonDesativar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -213,6 +215,7 @@
             this.edPrice1.Name = "edPrice1";
             this.edPrice1.Size = new System.Drawing.Size(121, 20);
             this.edPrice1.TabIndex = 17;
+            this.edPrice1.Text = "0000";
             this.edPrice1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // edPrice2
@@ -222,6 +225,7 @@
             this.edPrice2.Name = "edPrice2";
             this.edPrice2.Size = new System.Drawing.Size(121, 20);
             this.edPrice2.TabIndex = 18;
+            this.edPrice2.Text = "0000";
             this.edPrice2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // cbPresetType
@@ -293,9 +297,9 @@
             // 
             // listMessageBox
             // 
-            this.listMessageBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listMessageBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listMessageBox.FormattingEnabled = true;
             this.listMessageBox.HorizontalScrollbar = true;
             this.listMessageBox.Location = new System.Drawing.Point(11, 175);
@@ -304,11 +308,33 @@
             this.listMessageBox.TabIndex = 26;
             this.listMessageBox.SelectedIndexChanged += new System.EventHandler(this.listMessageBox_SelectedIndexChanged);
             // 
+            // buttonFinalizarAbastecimento
+            // 
+            this.buttonFinalizarAbastecimento.Location = new System.Drawing.Point(516, 146);
+            this.buttonFinalizarAbastecimento.Name = "buttonFinalizarAbastecimento";
+            this.buttonFinalizarAbastecimento.Size = new System.Drawing.Size(120, 23);
+            this.buttonFinalizarAbastecimento.TabIndex = 27;
+            this.buttonFinalizarAbastecimento.Text = "Finalizar Abast.";
+            this.buttonFinalizarAbastecimento.UseVisualStyleBackColor = true;
+            this.buttonFinalizarAbastecimento.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // buttonDesativar
+            // 
+            this.buttonDesativar.Location = new System.Drawing.Point(645, 59);
+            this.buttonDesativar.Name = "buttonDesativar";
+            this.buttonDesativar.Size = new System.Drawing.Size(100, 23);
+            this.buttonDesativar.TabIndex = 28;
+            this.buttonDesativar.Text = "Desativar Bico";
+            this.buttonDesativar.UseVisualStyleBackColor = true;
+            this.buttonDesativar.Click += new System.EventHandler(this.buttonDesativar_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 508);
+            this.Controls.Add(this.buttonDesativar);
+            this.Controls.Add(this.buttonFinalizarAbastecimento);
             this.Controls.Add(this.listMessageBox);
             this.Controls.Add(this.btReadCards);
             this.Controls.Add(this.btTotals);
@@ -370,6 +396,8 @@
         private System.Windows.Forms.Button btTotals;
         private System.Windows.Forms.Button btReadCards;
         private System.Windows.Forms.ListBox listMessageBox;
+        private System.Windows.Forms.Button buttonFinalizarAbastecimento;
+        private System.Windows.Forms.Button buttonDesativar;
     }
 }
 

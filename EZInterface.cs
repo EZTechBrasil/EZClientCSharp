@@ -268,7 +268,11 @@ namespace EZClientCSharp
 
 
         // const string DllName = "\\Work200\\EZClientDLL\\x64\\Release\\EZClient64.DLL";
-        const string DllName = "C:\\EZForecourt\\EZClient64.dll";
+        #if (WIN32)
+            const string DllName = "C:\\EZForecourt\\EZClient.dll";                
+        #else
+            const string DllName = "C:\\EZForecourt\\EZClient64.dll";
+        #endif  
 
         //--------------------------------- Connection -----------------------------------------//
 
