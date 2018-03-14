@@ -113,38 +113,41 @@ namespace EZClientCSharp
         {
             short iTmp;
             IntPtr iprt = new IntPtr(0);
-            DateTime dateTime = DateTime.Now ;
+            DateTime dateTime = DateTime.Now;
 
             if (chProcEvents.Checked)
                 iTmp = 7;
             else
                 iTmp = 1;
 
-           if( edServerAddress.Enabled == true )
-           {
-              WriteMessage("Conectando no servidor: " + edServerAddress.Text);
+            if (edServerAddress.Enabled == true)
+            {
+                WriteMessage("Conectando no servidor: " + edServerAddress.Text);
 
-               if (GoodResult(EZInterface.ClientLogonEx(35, iTmp, edServerAddress.Text, 5123, 5124, 10000, 0, new IntPtr(0), 0)))
-              {
-                edServerAddress.Enabled = false;
-                chProcEvents.Enabled = false;
-                btLogon.Text = "Logoff";
-              }
-               if (GoodResult(EZInterface.SetDateTime(dateTime)))
-                   WriteMessage("Data e Hora do concentrador atualizada com sucesso");
-              
-           }
-           else
-           {
+                if (GoodResult(EZInterface.ClientLogonEx(35, iTmp, edServerAddress.Text, 5123, 5124, 10000, 0, new IntPtr(0), 0)))
+                {
+                    edServerAddress.Enabled = false;
+                    chProcEvents.Enabled = false;
+                    btLogon.Text = "Logoff";
 
-              WriteMessage("Desconectando do servidor: " + edServerAddress.Text);
-              GoodResult( EZInterface.ClientLogoff() );
+                    EZInterface.SetClientType(0x0000046);
+                    
+                }
+                if (GoodResult(EZInterface.SetDateTime(dateTime)))
+                    WriteMessage("Data e Hora do concentrador atualizada com sucesso");
 
-              edServerAddress.Enabled = true;
-              chProcEvents.Enabled = true;
-              btLogon.Text = "Logon";
+            }
+            else
+            {
 
-           }
+                WriteMessage("Desconectando do servidor: " + edServerAddress.Text);
+                GoodResult(EZInterface.ClientLogoff());
+
+                edServerAddress.Enabled = true;
+                chProcEvents.Enabled = true;
+                btLogon.Text = "Logon";
+
+            }
         }
 
         private void btClearMessages_Click(object sender, EventArgs e)
