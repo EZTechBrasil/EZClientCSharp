@@ -8,6 +8,25 @@ namespace EZClientCSharp
 {
     public class EZInterface
     {
+        public const int SINK_MINIMAL_PUMP_EVENT = 0x0000001;
+        public const int SINK_FULL_PUMP_EVENT = 0x0000002;
+        public const int SINK_DELIVERY_EVENT = 0x0000004;
+        public const int SINK_SERVER_EVENT = 0x0000008;
+        public const int SINK_CLIENT_EVENT = 0x0000010;
+        public const int SINK_ZERO_DELIVERY_EVENT = 0x0000020;
+        public const int SINK_CARD_READ_EVENT = 0x0000040;
+        public const int SINK_ZB_STATUS_EVENT = 0x0000080;
+        public const int SINK_LOG_EVENT_EVENT = 0x0000100;
+        public const int SINK_SALE_ITEM_EVENT = 0x0000200;
+        public const int SINK_DB_HOSE_ETOTS_EVENT = 0x0000400;
+        public const int SINK_DB_TANK_STATUS_EVENT = 0x0000800;
+        public const int SINK_DB_LOG_EVENT = 0x0001000;
+        public const int SINK_DB_LOG_DEL_EVENT = 0x0002000;
+        public const int SINK_DB_CLEAR_DEL_EVENT = 0x0004000;
+        public const int SINK_DB_STACK_DEL_EVENT = 0x0008000;
+        public const int SINK_DB_ATT_LOGON_EVENT = 0x0010000;
+        public const int SINK_DB_ATT_LOGOFF_EVENT = 0x0020000;
+
         public enum EClientType : short
         {
             SIMPLE_CLIENT_TYPE = 0,
@@ -1213,5 +1232,8 @@ namespace EZClientCSharp
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 AckLogEvent(Int32 ID, Int32 ClientID);
 
-        }
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 SetClientType(Int32 ClientKey);
+
+    }
 }
