@@ -57,6 +57,7 @@
             this.listMessageBox = new System.Windows.Forms.ListBox();
             this.buttonFinalizarAbastecimento = new System.Windows.Forms.Button();
             this.buttonDesativar = new System.Windows.Forms.Button();
+            this.teste = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -328,11 +329,22 @@
             this.buttonDesativar.UseVisualStyleBackColor = true;
             this.buttonDesativar.Click += new System.EventHandler(this.buttonDesativar_Click);
             // 
+            // teste
+            // 
+            this.teste.Location = new System.Drawing.Point(687, 113);
+            this.teste.Name = "teste";
+            this.teste.Size = new System.Drawing.Size(75, 23);
+            this.teste.TabIndex = 29;
+            this.teste.Text = "teste";
+            this.teste.UseVisualStyleBackColor = false;
+            this.teste.Click += new System.EventHandler(this.teste_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 508);
+            this.Controls.Add(this.teste);
             this.Controls.Add(this.buttonDesativar);
             this.Controls.Add(this.buttonFinalizarAbastecimento);
             this.Controls.Add(this.listMessageBox);
@@ -398,6 +410,7 @@
         private System.Windows.Forms.ListBox listMessageBox;
         private System.Windows.Forms.Button buttonFinalizarAbastecimento;
         private System.Windows.Forms.Button buttonDesativar;
+        private System.Windows.Forms.Button teste;
     }
 }
 
