@@ -132,7 +132,7 @@ namespace EZClientCSharp
                     chProcEvents.Enabled = false;
                     btLogon.Text = "Logoff";
 
-                    EZInterface.SetClientType(0x0000046);
+                    EZInterface.SetClientType(EZInterface.SINK_CLIENT_EVENT);
                     
                 }
                 if (GoodResult(EZInterface.SetDateTime(dateTime)))
@@ -680,6 +680,8 @@ namespace EZClientCSharp
         //-----------------------------------------------------------------------------
         private void EventCardRead()
         {
+            WriteMessage("EVENTO GERADO __________ OU");
+
             int CardReadID = 0;
             int Number = 0;
             short CardType = 0;
@@ -1622,6 +1624,7 @@ namespace EZClientCSharp
 
         private void teste_Click(object sender, EventArgs e)
         {
+            #region Teste codigos
             //int quantidade = 0;
             //int id = 0;
 
@@ -1697,13 +1700,15 @@ namespace EZClientCSharp
             //}
 
 
+            #endregion
 
+            #region Leitura de Eventos
 
             //Int32 qtEventos = 0;
             //Int16 tipoDispo = -1;
             //Int32 idDispo = -1;
             //Int16 EventLevel = -1;
-            //Int16 EventType = 121;
+            //Int16 EventType = -1;
             //Int32 ClearedBy = -2;
             //Int32 AckedBy = -2;
 
@@ -1728,11 +1733,11 @@ namespace EZClientCSharp
             //double rWaterLevel = 0;
             //double rTemperature = 0;
 
-            // Pagina  263 do manual de desenvolvimento
-            // Pega a quantidade de eventos
+            ////Pagina  263 do manual de desenvolvimento
+            //// Pega a quantidade de eventos
             //EZInterface.GetLogEventCount(ref qtEventos, tipoDispo, idDispo, EventLevel, EventType, ClearedBy, AckedBy);
 
-            //WriteMessage("Quantidade -> " + qtEventos.ToString());
+            //WriteMessage("Quantidade de eventos -> " + qtEventos.ToString());
 
             //for (int i = 1; i <= qtEventos; i++)
             //{
@@ -1758,13 +1763,81 @@ namespace EZClientCSharp
             //    ref rWaterLevel,
             //    ref rTemperature);
 
-            //    if (rEventType == 121)
+            //    if (rEventType == 8 || rEventType == 9)
             //    {
             //        WriteMessage("Teste");
             //    }
             //}
-            int idAbastecimento = 0;
-            GoodResult(EZInterface.GetHoseByOrdinal(3000, ref idAbastecimento));
+
+            #endregion
+
+            //int idAbastecimento = 19;
+
+            //int HoseID = 1;
+            //short State = 2;
+            //short DType = 1;
+            //double Volume = 5.200;
+            //short PriceLevel = 1;
+            //double Price = 4.500;
+            //double Value = 23.40158;
+            //double Volume2 = 0;
+            //DateTime CompletedDT = new DateTime();
+            //int LockedBy = 0;
+            //int ReservedBy = 0;
+            //int AttendantID = -1;
+            //int Age = 0;
+            //DateTime ClearedDT = new DateTime();
+            //double OldVolumeETot = 0;
+            //double OldVolume2ETot = 0;
+            //double OldValueETot = 0;
+            //double NewVolumeETot = 0;
+            //double NewVolume2ETot = 0;
+            //double NewValueETot = 0;
+            //Int64 Tag = 0;
+            //int Duration = -1;
+            //int ClientID = 171;
+
+
+
+            //GoodResult(EZInterface.SetDeliveryPropertiesEx3(idAbastecimento, HoseID, State, DType,
+            //                                                              Volume,  PriceLevel, Price,
+            //                                                              Value, Volume2, CompletedDT,
+            //                                                              LockedBy, ReservedBy, AttendantID,
+            //                                                              Age, ClearedDT, OldVolumeETot,
+            //                                                              OldVolume2ETot, OldValueETot,
+            //                                                             NewVolumeETot, NewVolume2ETot,
+            //                                                              NewValueETot, Tag, Duration, ClientID));
+
+            //if(GoodResult(EZInterface.TagAuthorise(2, 77, 2, 250.00, 3, 2)))
+            //{
+            //    WriteMessage("Teste");
+            //}
+
+            //Int32 pNumber = 0;
+            //string pName ="", pTag ="";
+            //Int16 pEnabled = 0;
+            //Int16 pPriceLevel = 0;
+            //string pPlate = "";
+            //Int16 pGradeType = 0;
+            //Int16 pCardType = 0;
+            //Int16 pLimitType = 0;
+            //double pLimit = 0;
+            //Int16 pEntryType = 0;
+            //DateTime pdateTime = new DateTime(2018, 04, 30);
+            //Int64 pParentID = 0;
+
+
+            
+
+            //EZInterface.GetCardClientPropertiesEx2(1, ref pNumber, ref pName, ref pTag,ref pEnabled,ref pPriceLevel,ref pPlate,ref pGradeType, ref pCardType,ref pLimitType, ref pLimit,ref pEntryType, ref pdateTime, ref pParentID);
+            ////{
+            //   WriteMessage("Foi");
+            //}
+            //else
+            //{
+            //    WriteMessage("nao foi");
+            //}
         }
+
     }
 }

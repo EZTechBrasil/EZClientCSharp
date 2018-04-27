@@ -331,7 +331,7 @@
             // 
             // teste
             // 
-            this.teste.Location = new System.Drawing.Point(687, 113);
+            this.teste.Location = new System.Drawing.Point(657, 91);
             this.teste.Name = "teste";
             this.teste.Size = new System.Drawing.Size(75, 23);
             this.teste.TabIndex = 29;

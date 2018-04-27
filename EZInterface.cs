@@ -1111,7 +1111,7 @@ namespace EZClientCSharp
         internal static extern Int32 GetCardClientPropertiesEx(Int32 ID, ref Int32 Number, [MarshalAs(UnmanagedType.BStr)] ref string Name, [MarshalAs(UnmanagedType.BStr)] ref string Tag, ref Int16 Enabled, ref Int16 PriceLevel, [MarshalAs(UnmanagedType.BStr)] ref string Plate);
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
-        internal static extern Int32 GetCardClientPropertiesEx2(Int32 ID, ref Int32 pNumber, [MarshalAs(UnmanagedType.BStr)] ref string pName, [MarshalAs(UnmanagedType.BStr)] ref string pTag, ref Int16 pEnabled, ref Int16 pPriceLevel, [MarshalAs(UnmanagedType.BStr)] ref string pPlate, ref Int16 pGradeType);
+        internal static extern Int32 GetCardClientPropertiesEx2(Int32 ID, ref Int32 pNumber, [MarshalAs(UnmanagedType.BStr)] ref string pName, [MarshalAs(UnmanagedType.BStr)] ref string pTag, ref Int16 pEnabled, ref Int16 pPriceLevel, [MarshalAs(UnmanagedType.BStr)] ref string pPlate, ref Int16 pGradeType, ref Int16 pCardType, ref Int16 pLimitType, ref double pLimit, ref Int16 pEntryType, ref DateTime pExpirationDate, ref Int64 pParentID);
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 SetCardClientProperties(Int32 ID, Int32 Number, [MarshalAs(UnmanagedType.BStr)] string Name, [MarshalAs(UnmanagedType.BStr)] string Tag, short Enabled);
@@ -1120,7 +1120,7 @@ namespace EZClientCSharp
         internal static extern Int32 SetCardClientPropertiesEx(Int32 ID, Int32 Number, [MarshalAs(UnmanagedType.BStr)] string Name, [MarshalAs(UnmanagedType.BStr)] string Tag, Int16 Enabled, Int16 PriceLevel, [MarshalAs(UnmanagedType.BStr)] string Plate);
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
-        internal static extern Int32 SetCardClientPropertiesEx2(Int32 ID, Int32 Number, [MarshalAs(UnmanagedType.BStr)] string Name, [MarshalAs(UnmanagedType.BStr)] string Tag, Int16 Enabled, Int16 PriceLevel, [MarshalAs(UnmanagedType.BStr)] string Plate, Int16 GradeType);
+        internal static extern Int32 SetCardClientPropertiesEx2(Int32 ID, Int32 Number, [MarshalAs(UnmanagedType.BStr)] string Name, [MarshalAs(UnmanagedType.BStr)] string Tag, Int16 Enabled, Int16 PriceLevel, [MarshalAs(UnmanagedType.BStr)] string Plate, Int16 GradeType, Int16 CardType,  Int16 LimitType, double Limit, Int16 EntryType, DateTime ExpirationDate, Int64 ParentID);
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 DeleteCardClient(Int32 ID);
