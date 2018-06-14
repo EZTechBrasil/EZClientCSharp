@@ -18,7 +18,7 @@ namespace EZClientCSharp
             InitializeComponent();
         }
 
-        //------------------------------------------------------------------
+        #region Carregamento do form
         private void Form1_Load(object sender, EventArgs e)
         {
             Int32 ct = 0;
@@ -48,6 +48,8 @@ namespace EZClientCSharp
             WriteMessage(version);
         }
 
+        #endregion
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
         }
@@ -76,8 +78,7 @@ namespace EZClientCSharp
             return ((PumpNumber - 1) + Offset).ToString("X2");
         }
 
-        //----------------------------------------------------------------------------
-        // Avalia retorno das APIS EZForecourt e gera mensagem de erro
+        #region Avalia retorno das APIS EZForecourt e gera mensagem de erro
         private Boolean GoodResult(Int32 res)
         {
             string MSG;
@@ -91,6 +92,7 @@ namespace EZClientCSharp
 
             return (false);
         }
+        #endregion
 
         //---------------------------------------------------------------------
         private void WriteMessage(String msg)
@@ -222,12 +224,12 @@ namespace EZClientCSharp
         {
             if (chProcEvents.Checked == true)
                 InternalProccessEvents();
-            else  // Procssamento por Pooling
+            else  // Processamento por Pooling
                 ReadPumpsStatus();
 
         }
 
-        //----------------------------------------------------------------------------
+        
         private void ReadPumpsStatus()
         {
             int PumpsCount = 0;
@@ -249,15 +251,13 @@ namespace EZClientCSharp
             // Verifica se esta conectado ao servidor
             if (EZInterface.TestConnection() == 0)
             {
-                // Verifica se esta conectado ao servidor
+                // Verifica a quantidade de bombas configuradas
                 if (!GoodResult(EZInterface.GetPumpsCount(ref PumpsCount)))
                     return;
 
                 // Le o estado de todas as bombas configuradas
                 if (!GoodResult(EZInterface.GetAllPumpStatuses(ref PumpStates, ref CurrentHose, ref DeliveriesCount)))
                     return;
-
-                
 
                 cstatus = conv.GetBytes(PumpStates);
                 chose = conv.GetBytes(CurrentHose);
@@ -381,7 +381,7 @@ namespace EZClientCSharp
                         break;
 
                     //---------------------------------------------------------------------
-                    case EZInterface.ClientEvent.DB_TANK_STATUS: // eventos de Tanque
+                    case EZInterface.ClientEvent.DB_TANK_STATUS: // Eventos de Tanque
                         EventTank();
                         break;
 
@@ -596,7 +596,6 @@ namespace EZClientCSharp
             
 
                 // Primeiro abastecimento pode ser invalido
-
                 if (DeliveryID > 0)
                 {
                     WriteMessage("       DeliveryEvent: " +
@@ -646,28 +645,6 @@ namespace EZClientCSharp
                                     ",PeakFlowRate= " + PeakFlowRate);
 
                     WriteMessage("            Bico Equivalente CBC: " + CompanyID((short)HoseNumber, (short)PumpNumber));
-
-                    //if(HoseID == 1 && LockedBy == -1 && priceOriginalBico1 != 0)
-                    //{
-                    //    Int16 bDurationType = 0;
-                    //    Int16 bPriceType = 0;
-                    //    Double bPrice1 = 0.0d;
-                    //    Double bPrice2 = 0.0d;
-
-                    //    EZInterface.GetHosePrices(1, ref bDurationType, ref bPriceType, ref bPrice1, ref bPrice2);
-                    //    var res = EZInterface.SetHosePrices(1, 1, 1, priceOriginalBico1, bPrice2);               
-                    //    WriteMessage("Price HoseID 1 Returned to " + priceOriginalBico1);
-                    //    priceOriginalBico1 = 0;
-                    //}
-                    //AQUI
-                    //if (LockedBy == -1)
-                    //{
-                    //    if (GoodResult(EZInterface.LockDelivery(DeliveryID)))
-                    //        LockedBy = 1;
-
-                    //    if ((LockedBy == 1) && (DeliveryState != (short)EZInterface.TDeliveryState.CLEARED))
-                    //        GoodResult(EZInterface.ClearDelivery(DeliveryID, DeliveryType));
-                    //}
                     
                 }
             }
@@ -675,9 +652,7 @@ namespace EZClientCSharp
 
         //-----------------------------------------------------------------------------
         private void EventCardRead()
-        {
-            WriteMessage("EVENTO GERADO __________ OU");
-
+        { 
             int CardReadID = 0;
             int Number = 0;
             short CardType = 0;
@@ -706,7 +681,9 @@ namespace EZClientCSharp
                                                     ", ParentID " + ParentID +
                                                          ", Tag " + Tag +
                                                   ",  TimeStamp " + TimeStamp);
-
+                // <summary>
+                // Rotina utilizada para identificar o status do cartão lido.
+                // </summary>
                 switch ((EZInterface.TTagType)CardType)
                 {
                     case EZInterface.TTagType.ATTENDANT_TAG_TYPE:
@@ -737,40 +714,7 @@ namespace EZClientCSharp
                         WriteMessage("\n           Unknown Tag type: " + CardType + "  Tag " + Tag);
                         break;
                 }
-
                 
-                if (Tag == 237246860)
-                {
-                    Int16 bDurationType = 0;
-                    Int16 bPriceType = 0;
-                    Double bPrice1 = 0.0d;
-                    Double bPrice2 = 0.0d;
-                    int qtBicos = 0;
-
-                    EZInterface.GetHosePrices(1, ref bDurationType, ref bPriceType, ref bPrice1, ref bPrice2);
-                    priceOriginalBico1 = bPrice1;
-                    priceOriginalBico2 = bPrice2;
-
-                    //Pegando a quantidade de bicos de acordo com a posição de abastecimento
-                    EZInterface.GetPumpHosesCount(PumpID, ref qtBicos);
-
-                    //seta o preço de todos os bicos da posição de abastecimento identificada
-                    for (int i = 1; i <= qtBicos; i++)
-                    {
-                         EZInterface.SetHosePrices(i, 1, 1, 3.88, 3.88);
-                    }
-
-                    //Aguarda o frentista por 10 segundos
-                    System.Threading.Thread.Sleep(10000);
-
-                    //Retornando o preço original dos bicos
-                    for (int i = 1; i <= qtBicos; i++)
-                    {
-                        EZInterface.SetHosePrices(i, 1, 1, priceOriginalBico1, priceOriginalBico2);
-                    }                 
-
-                }
-
                 GoodResult(EZInterface.DeleteCardRead(CardReadID));
             }
         }
@@ -969,6 +913,9 @@ namespace EZClientCSharp
 
         //-----------------------------------------------------------------------------
 
+        //<summary>
+        // Listando todas as configurações.
+        //</summary>
         private void btLoadConfig_Click(object sender, EventArgs e)
         {
             ListGrades();
@@ -1142,7 +1089,7 @@ namespace EZClientCSharp
             String Name = "";
 
             //--------------------------------------------------------------------
-            // Ler o numero de produtos configurados
+            // Ler o numero de bombas configuradas
             if (!GoodResult(EZInterface.GetPumpsCount(ref Ct)))
                 return;
 
@@ -1214,7 +1161,7 @@ namespace EZClientCSharp
             WriteMessage("");
         }
 
-        //----------------------------------------------------------------------------
+        // Listando todos os bicos configurados
         private void ListHoses()
         {
             int Idx = 0;
@@ -1234,7 +1181,7 @@ namespace EZClientCSharp
             short Enabled = 0;
 
             //--------------------------------------------------------------------
-            // Ler o numero de produtos configurados
+            // Lê o numero de produtos configurados
             if (!GoodResult(EZInterface.GetHosesCount(ref Ct)))
                 return;
 
@@ -1261,7 +1208,7 @@ namespace EZClientCSharp
             }
         }
 
-        //---------------------------------------------------------------------
+        //Leitura de todos os abastecimentos registrados.
         private void btGetAllDeliveries_Click(object sender, EventArgs e)
         {
             int Idx = 0;
@@ -1296,8 +1243,7 @@ namespace EZClientCSharp
             if (EZInterface.TestConnection() != 0)
                 return;
 
-            //--------------------------------------------------------------------
-            // Le o numero de produtos configurados
+            // Le o numero de abastecimentos que estão no Ezserver, ou seja, não pegos por nenhum Client.
             if (!GoodResult(EZInterface.GetDeliveriesCount(ref Ct)))
                 return;
 
@@ -1537,8 +1483,6 @@ namespace EZClientCSharp
                     }
                 }
             }
-
-            // Faz ajuste do preço na bomba
         }
 
         //---------------------------------------------------------------------
