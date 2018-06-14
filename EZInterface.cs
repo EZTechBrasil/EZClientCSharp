@@ -8,6 +8,12 @@ namespace EZClientCSharp
 {
     public class EZInterface
     {
+        // <summary>
+        /* Para facilitar o processo de integração, organizamos o código 
+         * de acordo com a estrutura do manual de desenvolvimento. */
+         // </summary>
+
+        #region Tipos de client para o método setTypeClient 
         public const int SINK_MINIMAL_PUMP_EVENT = 0x0000001;
         public const int SINK_FULL_PUMP_EVENT = 0x0000002;
         public const int SINK_DELIVERY_EVENT = 0x0000004;
@@ -26,6 +32,9 @@ namespace EZClientCSharp
         public const int SINK_DB_STACK_DEL_EVENT = 0x0008000;
         public const int SINK_DB_ATT_LOGON_EVENT = 0x0010000;
         public const int SINK_DB_ATT_LOGOFF_EVENT = 0x0020000;
+        #endregion
+
+        #region Declaração dos enum's
 
         public enum EClientType : short
         {
@@ -285,15 +294,23 @@ namespace EZClientCSharp
             VOLUME_LIMIT_TYPE
         }
 
+        #endregion
 
+        #region Endereço default da EZClient (DLL)
         // const string DllName = "\\Work200\\EZClientDLL\\x64\\Release\\EZClient64.DLL";
-        #if (WIN32)
+#if (WIN32)
             const string DllName = "C:\\EZForecourt\\EZClient.dll";                
-        #else
-            const string DllName = "C:\\EZForecourt\\EZClient64.dll";
-        #endif  
+#else
+        const string DllName = "C:\\EZForecourt\\EZClient64.dll";
+#endif
 
-        //--------------------------------- Connection -----------------------------------------//
+        #endregion
+
+        #region Conexão (Connection)
+        // <summary>
+        /* Nesse trecho abaixo foram organizados todos os métodos
+         * relacionados à conexão da API com o concentrador.*/
+        // </summary>
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 ClientLogon(Int32 ClientID, Int16 ClientType, Int32 EventHandle, System.IntPtr hWnd, Int32 wMsg);
@@ -344,7 +361,9 @@ namespace EZClientCSharp
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 CheckSocketClosed(Int32 lParam);
 
-        //--------------------------------- Events --------------------------------------------//
+        #endregion
+
+        #region Events (Eventos)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 ProcessEvents();
@@ -499,7 +518,9 @@ namespace EZClientCSharp
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetNextZeroDeliveryEvent(ref Int32 PumpID, ref Int32 PumpNumber, ref Int32 HoseID, ref Int32 HoseNumber);
 
-        //--------------------------------- Pumps ---------------------------------------------//
+        #endregion
+
+        #region Pumps (Bombas)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetPumpsCount(ref Int32 Count);
@@ -573,7 +594,9 @@ namespace EZClientCSharp
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 FlashLEDS(Int32 ID, Int16 Side, Int16 PeriodMs, Int16 Cycles);
 
-        //--------------------------- Pump prepay deliveries ----------------------------------//
+        #endregion
+
+        #region Pump prepay deliveries (Abastecimentos Pré-pagos)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 PrepayReserve(Int32 ID);
@@ -584,7 +607,9 @@ namespace EZClientCSharp
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 PrepayAuthorise(Int32 ID, Int16 LimitType, Double Value, Int16 Hose, Int16 PriceLevel);
 
-        //--------------------------- Pump preauth deliveries ---------------------------------//
+        #endregion
+
+        #region Pump preauth deliveries (Abastecimentos Pré-autorizados)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 PreauthReserve(Int32 ID);
@@ -595,7 +620,9 @@ namespace EZClientCSharp
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 PreauthAuthorise(Int32 ID, Int16 LimitType, Double Value, Int16 Hose, Int16 PriceLevel);
 
-        //--------------------------- Pump payment deliveries ---------------------------------//
+        #endregion
+
+        #region Pump payment deliveries
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 PaymentReserve(Int32 ID, Int32 TermID, [MarshalAs(UnmanagedType.BStr)] string TermHash);
@@ -613,7 +640,9 @@ namespace EZClientCSharp
            Double Odometer, Double Odometer2, [MarshalAs(UnmanagedType.BStr)] string Plate,
            [MarshalAs(UnmanagedType.BStr)] string ExtTransactionID, [MarshalAs(UnmanagedType.BStr)] string DriverID, [MarshalAs(UnmanagedType.BStr)] string AuthorisationID);
 
-        //------------------------------ Pump authorization ------------------------------------//
+        #endregion
+
+        #region Pump authorization (Autorização da Bomba)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 AttendantAuthorise(Int32 ID, Int32 AttendantID);
@@ -642,7 +671,9 @@ namespace EZClientCSharp
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 TagAuthorise(Int32 ID, Int64 Tag, Int16 LimitType, Double Value, Int16 Hose, Int16 PriceLevel);
 
-        //-------------------------------- Global functions ------------------------------------//
+        #endregion
+
+        #region Global functions (Funções Globais)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 AllStop();
@@ -662,7 +693,9 @@ namespace EZClientCSharp
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetAllPumpStatuses([MarshalAs(UnmanagedType.BStr)] ref string States, [MarshalAs(UnmanagedType.BStr)] ref string CurrentHoses, [MarshalAs(UnmanagedType.BStr)] ref string DeliveriesCount);
 
-        //------------------------------------ Deliveries --------------------------------------//
+        #endregion
+
+        #region Deliveries (Abastecimentos)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetDeliveriesCount(ref Int32 Count);
@@ -868,7 +901,9 @@ namespace EZClientCSharp
         [return: MarshalAs(UnmanagedType.BStr)]
         internal static extern string DeliveryTypestring(Int16 Type);
 
-        //-------------------------------------- Hoses -----------------------------------------//
+        #endregion
+
+        #region Hoses (Bicos)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetHosesCount(ref Int32 Count);
@@ -929,7 +964,9 @@ namespace EZClientCSharp
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 SetHosePrices(Int32 id, Int16 DurationType, Int16 PriceType, Double Price1, Double Price2);
 
-        //-------------------------------------- Grades ---------------------------------------//
+        #endregion
+
+        #region Grades (Combustíveis)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetGradesCount(ref Int32 Count);
@@ -964,7 +1001,9 @@ namespace EZClientCSharp
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetGradePrice(Int32 ID, Int16 Level, ref Double Price);
 
-        //-------------------------------------- Tanks ----------------------------------------//
+        #endregion
+
+        #region Tanks (Tanques)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetTanksCount(ref Int32 Count);
@@ -1012,7 +1051,9 @@ namespace EZClientCSharp
             ref Double GaugeLevel, ref Double GaugeWaterVolume, ref Double GaugeWaterLevel, ref Int32 GaugeID, ref Int16 ProbeNo,
             ref Int16 State, ref Int32 GaugeAlarmsMask);
 
-        //-------------------------------------- Ports ----------------------------------------//
+        #endregion
+
+        #region Ports (Portas)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetPortsCount(ref Int32 Count);
@@ -1050,7 +1091,9 @@ namespace EZClientCSharp
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 RequestVersion(Int32 ID, Int32 ZBID);
 
-        //-------------------------------------- Attendants -----------------------------------//
+        #endregion
+
+        #region Attendants (Frentistas)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetAttendantsCount(ref Int32 Count);
@@ -1090,7 +1133,9 @@ namespace EZClientCSharp
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 AttendantLogoff(Int32 ID);
 
-        //------------------------------ Card Clients -----------------------------------------//
+        #endregion
+
+        #region Card Clients (Cartão de Clientes)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetCardClientsCount(ref Int32 Count);
@@ -1125,7 +1170,9 @@ namespace EZClientCSharp
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 DeleteCardClient(Int32 ID);
 
-        //------------------------------ Card Reads -----------------------------------------//
+        #endregion
+
+        #region Card Reads (Leitura de cartão)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetCardReadsCount(ref Int32 Count);
@@ -1153,7 +1200,9 @@ namespace EZClientCSharp
             ref Int32 pTagType, ref Int32 pID, [MarshalAs(UnmanagedType.BStr)] 
             ref string pName, ref Int32 pNumber);
 
-        //------------------------------ ZigBee devices ---------------------------------------//
+        #endregion
+
+        #region ZigBee devices (Dispositivos ZigBee)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetZigBeeCount(ref Int32 Count);
@@ -1176,7 +1225,9 @@ namespace EZClientCSharp
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 DeleteZigBee(Int32 ID);
 
-        //------------------------------ Sensors ----------------------------------------------//
+        #endregion
+
+        #region Sensors (Sensores)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetSensorsCount( ref Int32 Count ) ;
@@ -1205,7 +1256,9 @@ namespace EZClientCSharp
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 DeleteSensor(Int32 ID);
 
-        //------------------------------ Logged events -----------------------------------------//
+        #endregion
+
+        #region Logged events (Eventos Logged)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetLogEventCount(ref Int32 Count, Int16 DeviceType, Int32 DeviceID, Int16 EventLevel, Int16 EventType, Int32 ClearedBy, Int32 AckedBy);
@@ -1234,6 +1287,8 @@ namespace EZClientCSharp
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 SetClientType(Int32 ClientKey);
+
+        #endregion
 
     }
 }

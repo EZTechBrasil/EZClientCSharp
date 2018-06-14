@@ -12,8 +12,6 @@ namespace EZClientCSharp
     public partial class Form1 : Form
     {
         private byte[] lastStates = new byte[100];
-        private double priceOriginalBico1;
-        private double priceOriginalBico2;
 
         public Form1()
         {
@@ -54,14 +52,12 @@ namespace EZClientCSharp
         {
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-        }
-
         //------------------------------------------------------------------------------
-        // Calcula o codigo referente ao ID do bico nos concentradores CBC da Companytec.
+        // <summary>
+        //    Calcula o codigo referente ao ID do bico nos concentradores CBC da Companytec.
         //    HoseNumber: numero fisico do bico na bomba 
         //    PumpNumber: numero da bomba
+        // </summary>
         //
         private String CompanyID(short HoseNumber, short PumpNumber)
         {
@@ -133,7 +129,7 @@ namespace EZClientCSharp
                     btLogon.Text = "Logoff";
 
                     EZInterface.SetClientType(EZInterface.SINK_CLIENT_EVENT);
-                    
+
                 }
                 if (GoodResult(EZInterface.SetDateTime(dateTime)))
                     WriteMessage("Data e Hora do concentrador atualizada com sucesso");
