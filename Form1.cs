@@ -936,7 +936,7 @@ namespace EZClientCSharp
 
         #endregion
 
-        #region Lista configuracao de combustíveis
+        #region Lista configuração de combustíveis
         private void ListGrades()
         {
             int Idx = 0;
@@ -1570,6 +1570,5 @@ namespace EZClientCSharp
             WriteMessage("aqui está " + num);
         }
         #endregion
-
     }
 }
