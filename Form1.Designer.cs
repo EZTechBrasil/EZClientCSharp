@@ -56,7 +56,6 @@
             this.listMessageBox = new System.Windows.Forms.ListBox();
             this.buttonFinalizarAbastecimento = new System.Windows.Forms.Button();
             this.buttonDesativar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -76,7 +75,6 @@
             this.edServerAddress.Size = new System.Drawing.Size(314, 20);
             this.edServerAddress.TabIndex = 1;
             this.edServerAddress.Text = "localhost";
-            this.edServerAddress.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // chProcEvents
             // 
@@ -87,7 +85,6 @@
             this.chProcEvents.TabIndex = 2;
             this.chProcEvents.Text = "Processar por Eventos";
             this.chProcEvents.UseVisualStyleBackColor = true;
-            this.chProcEvents.CheckedChanged += new System.EventHandler(this.chProcEvents_CheckedChanged);
             // 
             // timerAppLoop
             // 
@@ -160,7 +157,6 @@
             this.cbHose.Name = "cbHose";
             this.cbHose.Size = new System.Drawing.Size(121, 21);
             this.cbHose.TabIndex = 9;
-            this.cbHose.SelectedIndexChanged += new System.EventHandler(this.cbHose_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -297,7 +293,6 @@
             this.listMessageBox.Name = "listMessageBox";
             this.listMessageBox.Size = new System.Drawing.Size(751, 316);
             this.listMessageBox.TabIndex = 26;
-            this.listMessageBox.SelectedIndexChanged += new System.EventHandler(this.listMessageBox_SelectedIndexChanged);
             // 
             // buttonFinalizarAbastecimento
             // 
@@ -311,23 +306,13 @@
             // 
             // buttonDesativar
             // 
-            this.buttonDesativar.Location = new System.Drawing.Point(645, 59);
+            this.buttonDesativar.Location = new System.Drawing.Point(642, 32);
             this.buttonDesativar.Name = "buttonDesativar";
             this.buttonDesativar.Size = new System.Drawing.Size(100, 23);
             this.buttonDesativar.TabIndex = 28;
             this.buttonDesativar.Text = "Desativar Bico";
             this.buttonDesativar.UseVisualStyleBackColor = true;
             this.buttonDesativar.Click += new System.EventHandler(this.buttonDesativar_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(656, 92);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "teste";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // label3
             // 
@@ -344,7 +329,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 508);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonDesativar);
             this.Controls.Add(this.buttonFinalizarAbastecimento);
             this.Controls.Add(this.listMessageBox);
@@ -409,7 +393,6 @@
         private System.Windows.Forms.ListBox listMessageBox;
         private System.Windows.Forms.Button buttonFinalizarAbastecimento;
         private System.Windows.Forms.Button buttonDesativar;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
     }
 }

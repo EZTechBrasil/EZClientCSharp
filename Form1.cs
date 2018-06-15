@@ -50,11 +50,7 @@ namespace EZClientCSharp
 
         #endregion
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        //------------------------------------------------------------------------------
+        #region Get CompanyID
         // <summary>
         //    Calcula o codigo referente ao ID do bico nos concentradores CBC da Companytec.
         //    HoseNumber: numero fisico do bico na bomba 
@@ -77,6 +73,7 @@ namespace EZClientCSharp
 
             return ((PumpNumber - 1) + Offset).ToString("X2");
         }
+        #endregion
 
         #region Avalia retorno das APIS EZForecourt e gera mensagem de erro
         private Boolean GoodResult(Int32 res)
@@ -94,21 +91,16 @@ namespace EZClientCSharp
         }
         #endregion
 
-        //---------------------------------------------------------------------
+        #region Método de Escrever Mensagens no Box
         private void WriteMessage(String msg)
         {
             listMessageBox.Items.Add(msg);
             listMessageBox.SelectedIndex = listMessageBox.Items.Count - 1;
             listMessageBox.SelectedIndex = -1;
         }
+        #endregion
 
-        //---------------------------------------------------------------------
-        private void chProcEvents_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        //---------------------------------------------------------------------
+        #region Botão de Login
         private void btLogon_Click(object sender, EventArgs e)
         {
             short iTmp;
@@ -149,13 +141,16 @@ namespace EZClientCSharp
 
             }
         }
+        #endregion
 
+        #region Limpar Mensagens do Box
         private void btClearMessages_Click(object sender, EventArgs e)
         {
             listMessageBox.Items.Clear();
         }
+        #endregion
 
-        //---------------------------------------------------------------------
+        #region Liberação pelo Cartão
         private void btReadCards_Click(object sender, EventArgs e)
         {
             int CardID = 0;
@@ -206,8 +201,9 @@ namespace EZClientCSharp
             }
 
         }
+        #endregion
 
-        //----------------------------------------------------------------------------
+        #region Checando a conexão
         private void btCheckConnection_Click(object sender, EventArgs e)
         {
             if (!GoodResult(EZInterface.TestConnection()))
@@ -219,7 +215,9 @@ namespace EZClientCSharp
                 WriteMessage("Conexao com EZServer OK!");
         }
 
-        //----------------------------------------------------------------------------
+        #endregion
+
+        #region Método do Time
         private void timerAppLoop_Tick(object sender, EventArgs e)
         {
             if (chProcEvents.Checked == true)
@@ -228,8 +226,9 @@ namespace EZClientCSharp
                 ReadPumpsStatus();
 
         }
+        #endregion
 
-        
+        #region Lendo o status das bombas
         private void ReadPumpsStatus()
         {
             int PumpsCount = 0;
@@ -310,8 +309,9 @@ namespace EZClientCSharp
                 }
             }
         }
+        #endregion
 
-        //----------------------------------------------------------------------------
+        #region Processamento de eventos
         private void InternalProccessEvents()
         {
             int EvtCt = 0;
@@ -398,7 +398,9 @@ namespace EZClientCSharp
             }
         }
 
-        //-----------------------------------------------------------------------------
+        #endregion
+
+        #region Evento da Bomba
         private void EventPump()
         {
             int PumpID = 0;
@@ -518,7 +520,9 @@ namespace EZClientCSharp
             }
         }
 
-        //-----------------------------------------------------------------------------
+        #endregion
+
+        #region Evento de Abastecimento
         private void EventDelivery()
         {
             int DeliveryID = 0;
@@ -650,7 +654,9 @@ namespace EZClientCSharp
             }
         }
 
-        //-----------------------------------------------------------------------------
+        #endregion
+
+        #region Evento de Leitura de Cartão
         private void EventCardRead()
         { 
             int CardReadID = 0;
@@ -719,7 +725,9 @@ namespace EZClientCSharp
             }
         }
 
-        //-----------------------------------------------------------------------------
+        #endregion
+
+        #region Evento de mudanca de encerrantes 
         private void EventDbLogETotals()
         {
             int HoseID = 0;
@@ -759,7 +767,9 @@ namespace EZClientCSharp
             }
         }
 
-        //-----------------------------------------------------------------------------
+        #endregion
+
+        #region Evento do EZServer
         private void EventServer()
         {
             int EventID = 0;
@@ -774,8 +784,9 @@ namespace EZClientCSharp
                 WriteMessage("------ ServerEvent:   EventID " + EventID + ",  EventText " + EventText);
 
         }
+        #endregion
 
-        //-----------------------------------------------------------------------------
+        #region Evento de Client
         private void EventClient()
         {
             int EventID = 0;
@@ -791,9 +802,9 @@ namespace EZClientCSharp
                 WriteMessage("------ ClientEvent: ClientID " + ClientID + ",  EventID " + EventID + ",  EventText " + EventText);
 
         }
+        #endregion
 
-        //-----------------------------------------------------------------------------
-
+        #region Evento dos dispositivos ZigBee
         private void EventZB2G()
         {
             Int32 PortID = 0;
@@ -812,9 +823,9 @@ namespace EZClientCSharp
             if (GoodResult(EZInterface.GetNextZB2GStatusEvent(ref PortID, ref ZBAddress, ref LQI, ref RSSI, ref ParZBAddress, ref ZBChannel, ref MemBlocks, ref MemFree)))
                 WriteMessage("------ ZigBeeEvent:   PortID " + PortID + ",  Endereço ZigBee " + ZBAddress + ", LQI " + LQI + ", RSSI " + RSSI + ", ParZBAddress " + ParZBAddress + ", Canal " + ZBChannel + ", Memória Bloqueada " + MemBlocks + ", Memória Livre " + MemFree);
         }
+        #endregion
 
-        //-----------------------------------------------------------------------------
-
+        #region Evento Logged
         private void EventLog()
         {
             Int32 LogEventID = 0;
@@ -861,9 +872,9 @@ namespace EZClientCSharp
                     ", Temperature " + Temperature);
             }
         }
+        #endregion
 
-        //-----------------------------------------------------------------------------
-
+        #region Evento de Tanque
         private void EventTank()
         {
             Int32 TankID = 0;
@@ -910,12 +921,9 @@ namespace EZClientCSharp
                     ", State " + State + ", AlarmsMask " + AlarmsMask);
             }
         }
+        #endregion
 
-        //-----------------------------------------------------------------------------
-
-        //<summary>
-        // Listando todas as configurações.
-        //</summary>
+        #region Listando todas as configurações.
         private void btLoadConfig_Click(object sender, EventArgs e)
         {
             ListGrades();
@@ -926,8 +934,9 @@ namespace EZClientCSharp
             ListHoses();
         }
 
-        //----------------------------------------------------------------------------
-        // Lista configuracao de produtos
+        #endregion
+
+        #region Lista configuracao de combustíveis
         private void ListGrades()
         {
             int Idx = 0;
@@ -960,8 +969,9 @@ namespace EZClientCSharp
 
             WriteMessage("");
         }
+        #endregion
 
-        //----------------------------------------------------------------------------
+        #region Listar Tanques
         private void ListTanks()
         {
             int Idx = 0;
@@ -1018,9 +1028,9 @@ namespace EZClientCSharp
 
             WriteMessage("");
         }
+        #endregion
 
-        //----------------------------------------------------------------------------
-
+        #region Listar Sensores
         private void ListSensors()
         {
             int Idx = 0;
@@ -1057,9 +1067,9 @@ namespace EZClientCSharp
 
             WriteMessage("");
         }
+        #endregion
 
-        //----------------------------------------------------------------------------
-
+        #region Listar Bombas
         private void ListPumps()
         {
             int Idx = 0;
@@ -1120,8 +1130,9 @@ namespace EZClientCSharp
             WriteMessage("");
         }
 
-        //----------------------------------------------------------------------------
+        #endregion
 
+        #region Listar ZigBees
         private void ListZigbee()
         {
             int Idx = 0;
@@ -1160,8 +1171,9 @@ namespace EZClientCSharp
 
             WriteMessage("");
         }
+        #endregion
 
-        // Listando todos os bicos configurados
+        #region Listando todos os bicos configurados
         private void ListHoses()
         {
             int Idx = 0;
@@ -1207,8 +1219,9 @@ namespace EZClientCSharp
                 }
             }
         }
+        #endregion
 
-        //Leitura de todos os abastecimentos registrados.
+        #region Leitura de todos os abastecimentos registrados.
         private void btGetAllDeliveries_Click(object sender, EventArgs e)
         {
             int Idx = 0;
@@ -1290,7 +1303,9 @@ namespace EZClientCSharp
 
             WriteMessage("------------------------------------------------------------------------");
         }
+        #endregion
 
+        #region Encerrantes
         private void btTotals_Click(object sender, EventArgs e)
         {
             int IdBomba = 0;
@@ -1345,8 +1360,9 @@ namespace EZClientCSharp
                 }
             }
         }
+        #endregion
 
-        //---------------------------------------------------------------------
+        #region Botão Autoriza Bomba
         private void btAuthorize_Click(object sender, EventArgs e)
         {
             int Bomba = 0;
@@ -1367,8 +1383,9 @@ namespace EZClientCSharp
                 WriteMessage("--- Bomba " + Bomba + " Autorizada!");
 
         }
+        #endregion
 
-        //---------------------------------------------------------------------
+        #region Botão Bloqueio de Bomba
         private void btLock_Click(object sender, EventArgs e)
         {
             int Bomba = 0;
@@ -1388,8 +1405,9 @@ namespace EZClientCSharp
             if (GoodResult(EZInterface.CancelAuthorise(IdBomba)))
                 WriteMessage("--- Bomba " + Bomba + " Desautorizada!");
         }
+        #endregion
 
-        //---------------------------------------------------------------------
+        #region Botão Troca de Preço
         private void btChangePrice_Click(object sender, EventArgs e)
         {
             int Bomba = 0;
@@ -1484,8 +1502,9 @@ namespace EZClientCSharp
                 }
             }
         }
+        #endregion
 
-        //---------------------------------------------------------------------
+        #region Predeterminação (Preset)
         private void btPreset_Click(object sender, EventArgs e)
         {
             int Bomba = 0;
@@ -1516,17 +1535,9 @@ namespace EZClientCSharp
             if (GoodResult(EZInterface.LoadPreset(IdBomba, LType, PsValue, (short)IdBico, 1)))
                 WriteMessage("     Preset Enviado: Bomba " + Bomba + " Bico " + Bico + " Tipo " + LType + " Valor " + PsValue + " Nivel 1");
         }
+        #endregion
 
-        private void listMessageBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cbHose_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        #region Botão Finalizar Abastecimento
         private void button1_Click(object sender, EventArgs e)
         {
             int Bomba;
@@ -1535,7 +1546,9 @@ namespace EZClientCSharp
 
             EZInterface.TempStop(Bomba);
         }
+        #endregion
 
+        #region Botão Desativar Bico
         private void buttonDesativar_Click(object sender, EventArgs e)
         {
             int Bomba = 0;
@@ -1556,6 +1569,7 @@ namespace EZClientCSharp
                 return;
             WriteMessage("aqui está " + num);
         }
+        #endregion
 
     }
 }
