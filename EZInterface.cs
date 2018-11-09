@@ -964,6 +964,10 @@ namespace EZClientCSharp
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 SetHosePrices(Int32 id, Int16 DurationType, Int16 PriceType, Double Price1, Double Price2);
 
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 SetHosePricesMT(IntPtr pLogon, Int32 id, Int16 durationType, Int16 priceType, Double price1, Double price2);
+
+
         #endregion
 
         #region Grades (Combustíveis)
@@ -1003,7 +1007,7 @@ namespace EZClientCSharp
 
         #endregion
 
-        #region Tanks (Tanques)
+        #region Tanks (ATG)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetTanksCount(ref Int32 Count);

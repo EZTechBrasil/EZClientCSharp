@@ -100,23 +100,24 @@ namespace EZClientCSharp
         }
         #endregion
 
-        #region Botão de Login
+        #region Autentificação
         private void btLogon_Click(object sender, EventArgs e)
         {
-            short iTmp;
+            short tipoDeCliente;
+            int clienteID = 35;
             IntPtr iprt = new IntPtr(0);
             DateTime dateTime = DateTime.Now;
 
             if (chProcEvents.Checked)
-                iTmp = 7;
+                tipoDeCliente = 7;
             else
-                iTmp = 1;
+                tipoDeCliente = 1;
 
             if (edServerAddress.Enabled == true)
             {
                 WriteMessage("Conectando no servidor: " + edServerAddress.Text);
 
-                if (GoodResult(EZInterface.ClientLogonEx(35, iTmp, edServerAddress.Text, 5123, 5124, 10000, 0, new IntPtr(0), 0)))
+                if (GoodResult(EZInterface.ClientLogonEx(clienteID, tipoDeCliente, edServerAddress.Text, 5123, 5124, 10000, 0, new IntPtr(0), 0)))
                 {
                     edServerAddress.Enabled = false;
                     chProcEvents.Enabled = false;
@@ -955,7 +956,7 @@ namespace EZClientCSharp
             if (!GoodResult(EZInterface.GetGradesCount(ref Ct)))
                 return;
 
-            WriteMessage("[Produtos" + Ct + "]---------------------------------------------------");
+            WriteMessage("[Produtos " + Ct + "]---------------------------------------------------");
 
             for (Idx = 0; Idx < Ct; Idx++)
             {
@@ -1001,9 +1002,9 @@ namespace EZClientCSharp
             if (!GoodResult(EZInterface.GetTanksCount(ref Ct)))
                 return;
 
-            WriteMessage("[Tanques " + Ct + "]---------------------------------------------------");
+            WriteMessage("[Tanques = " + Ct + "]---------------------------------------------------");
 
-            for (Idx = 0; Idx < Ct; Idx++)
+            for (Idx = 1; Idx <= Ct; Idx++)
             {
                 if (EZInterface.GetTankByOrdinal(Idx, ref Id) != 0)
                     return;
@@ -1051,7 +1052,7 @@ namespace EZClientCSharp
 
             WriteMessage("[Sensores " + Ct + "]---------------------------------------------------");
 
-            for (Idx = 0; Idx < Ct; Idx++)
+            for (Idx = 1; Idx <= Ct; Idx++)
             {
                 if (EZInterface.GetSensorByOrdinal(Idx, ref Id) != 0)
                     return;
@@ -1103,9 +1104,9 @@ namespace EZClientCSharp
             if (!GoodResult(EZInterface.GetPumpsCount(ref Ct)))
                 return;
 
-            WriteMessage("[Bombas " + Ct + "]---------------------------------------------------");
+            WriteMessage("[Bombas = " + Ct + "]---------------------------------------------------");
 
-            for (Idx = 0; Idx < Ct; Idx++)
+            for (Idx = 1; Idx <= Ct; Idx++)
             {
 
                 if (EZInterface.GetPumpByOrdinal(Idx, ref Id) != 0)
@@ -1197,9 +1198,9 @@ namespace EZClientCSharp
             if (!GoodResult(EZInterface.GetHosesCount(ref Ct)))
                 return;
 
-            WriteMessage("[Bicos " + Ct + "]---------------------------------------------------");
+            WriteMessage("[Bicos = " + Ct + "]---------------------------------------------------");
 
-            for (Idx = 0; Idx < Ct; Idx++)
+            for (Idx = 1; Idx <= Ct; Idx++)
             {
 
                 if (EZInterface.GetHoseByOrdinal(Idx, ref Id) != 0)
@@ -1224,8 +1225,8 @@ namespace EZClientCSharp
         #region Leitura de todos os abastecimentos registrados.
         private void btGetAllDeliveries_Click(object sender, EventArgs e)
         {
-            int Idx = 0;
-            int Ct = 0;
+            int contador = 0;
+            int quantidadeDeAbastecimentos = 0;
             int Id = 0;
 
             int HoseID = 0;
@@ -1257,48 +1258,56 @@ namespace EZClientCSharp
                 return;
 
             // Le o numero de abastecimentos que estão no Ezserver, ou seja, não pegos por nenhum Client.
-            if (!GoodResult(EZInterface.GetDeliveriesCount(ref Ct)))
+            if (!GoodResult(EZInterface.GetDeliveriesCount(ref quantidadeDeAbastecimentos)))
                 return;
 
-            WriteMessage("[Abastecimentos " + Ct + "]---------------------------------------------------");
-
-            for (Idx = Ct; Idx > 0; Idx--)
+            if (quantidadeDeAbastecimentos != 0)
             {
 
-                if (!GoodResult(EZInterface.GetDeliveryByOrdinal(Idx, ref Id)))
-                    return;
+                WriteMessage("[Abastecimentos " + quantidadeDeAbastecimentos + "]---------------------------------------------------");
 
-                if (GoodResult(EZInterface.GetDeliveryPropertiesEx3(Id, ref HoseID, ref State, ref DType,
-                                                                         ref Volume, ref PriceLevel, ref Price,
-                                                                         ref Value, ref Volume2, ref CompletedDT,
-                                                                         ref LockedBy, ref ReservedBy, ref AttendantID,
-                                                                         ref Age, ref ClearedDT, ref OldVolumeETot,
-                                                                         ref OldVolume2ETot, ref OldValueETot,
-                                                                         ref NewVolumeETot, ref NewVolume2ETot,
-                                                                         ref NewValueETot, ref Tag, ref Duration, ref ClientID)))
+                for (contador = quantidadeDeAbastecimentos; contador > 0; contador--)
                 {
-                    WriteMessage("------ Abastecimento: (" + Idx + ") " + Id);
-                    WriteMessage("           HoseID " + HoseID + ",  State " + State + ",  Type " + DType);
-                    WriteMessage("           Volume " + Volume + ",  PriceLevel " + PriceLevel + ",  Price " + Price + ",  Value " + Value);
-                    WriteMessage("           Volume2 " + Volume2 + ",  CompleteDT " + CompletedDT + ",  LockedBy " + LockedBy + ",  ReservedBy " + ReservedBy);
-                    WriteMessage("           AttendantID " + AttendantID + ",  Age " + Age + ",  ClearedDT " + ClearedDT);
-                    WriteMessage("           OldVolumeETot " + OldVolumeETot + ",  OldVolume2ETot " + OldVolume2ETot + ",  OldvalueETot " + OldValueETot);
-                    WriteMessage("           NewVolumeETot " + NewVolumeETot + ",  NewVolume2ETot " + NewVolume2ETot + ",  NewValueETot " + NewValueETot);
-                    WriteMessage("           Tag " + Tag + ",  Duraction " + Duration + ",   ClientID " + ClientID);
-                    WriteMessage("");
-                    //AQUI
-                    if (LockedBy != -1)
-                        continue;
 
-                    if (GoodResult(EZInterface.LockDelivery(Id)))
-                        LockedBy = 1;
-                    else
-                        continue;
+                    if (!GoodResult(EZInterface.GetDeliveryByOrdinal(contador, ref Id)))
+                        return;
 
-                    if ((LockedBy == 1) && (State != (short)EZInterface.TDeliveryState.CLEARED))
-                        GoodResult(EZInterface.ClearDelivery(Id, DType));
+                    if (GoodResult(EZInterface.GetDeliveryPropertiesEx3(Id, ref HoseID, ref State, ref DType,
+                                                                             ref Volume, ref PriceLevel, ref Price,
+                                                                             ref Value, ref Volume2, ref CompletedDT,
+                                                                             ref LockedBy, ref ReservedBy, ref AttendantID,
+                                                                             ref Age, ref ClearedDT, ref OldVolumeETot,
+                                                                             ref OldVolume2ETot, ref OldValueETot,
+                                                                             ref NewVolumeETot, ref NewVolume2ETot,
+                                                                             ref NewValueETot, ref Tag, ref Duration, ref ClientID)))
+                    {
+                        WriteMessage("------ Abastecimento: (" + contador + ") " + Id);
+                        WriteMessage("           HoseID " + HoseID + ",  State " + State + ",  Type " + DType);
+                        WriteMessage("           Volume " + Volume + ",  PriceLevel " + PriceLevel + ",  Price " + Price + ",  Value " + Value);
+                        WriteMessage("           Volume2 " + Volume2 + ",  CompleteDT " + CompletedDT + ",  LockedBy " + LockedBy + ",  ReservedBy " + ReservedBy);
+                        WriteMessage("           AttendantID " + AttendantID + ",  Age " + Age + ",  ClearedDT " + ClearedDT);
+                        WriteMessage("           OldVolumeETot " + OldVolumeETot + ",  OldVolume2ETot " + OldVolume2ETot + ",  OldvalueETot " + OldValueETot);
+                        WriteMessage("           NewVolumeETot " + NewVolumeETot + ",  NewVolume2ETot " + NewVolume2ETot + ",  NewValueETot " + NewValueETot);
+                        WriteMessage("           Tag " + Tag + ",  Duraction " + Duration + ",   ClientID " + ClientID);
+                        WriteMessage("");
+                        //AQUI
+                        if (LockedBy != -1)
+                            continue;
 
+                        if (GoodResult(EZInterface.LockDelivery(Id)))
+                            LockedBy = 1;
+                        else
+                            continue;
+
+                        if ((LockedBy == 1) && (State != (short)EZInterface.TDeliveryState.CLEARED))
+                            GoodResult(EZInterface.ClearDelivery(Id, DType));
+
+                    }
                 }
+            }
+            else
+            {
+                WriteMessage("Sem abastecimentos até o momento.");
             }
 
             WriteMessage("------------------------------------------------------------------------");
@@ -1517,7 +1526,16 @@ namespace EZClientCSharp
             Bomba = cbPump.SelectedIndex + 1;   // Le o numero da bomba
             Bico = cbHose.SelectedIndex + 1;
             LType = (short)(cbPresetType.SelectedIndex + 2);
-            PsValue = Convert.ToDouble(edPreset.Text);
+
+            // Verifica se o textbox de Predet. está vazio
+            if (edPreset.MaskCompleted)
+            {
+                PsValue = Convert.ToDouble(edPreset.Text);
+            }
+            else
+            {
+                WriteMessage("Valor informado está incorreto.");
+            }
 
             WriteMessage("--- Bomba " + Bomba + " - Preset");
 
@@ -1567,7 +1585,125 @@ namespace EZClientCSharp
                 return;
             if (!GoodResult(EZInterface.GetHosesCount(ref num)))
                 return;
-            WriteMessage("aqui está " + num);
+            
+            //1 Bomba com o Id 1 = total de 4 bicos
+            WriteMessage("Quantidade de bicos " + num);
+        }
+        #endregion
+
+        private void buttonTeste_Click(object sender, EventArgs e)
+        {
+            //var teste = EZInterface.SetHosePrices(1, 1, 1, 3.333, 0);
+            // WriteMessage("<<<<<------------SetHosePrices------------>>>>>>");
+
+            //EZInterface.LoadPresetWithPrice(1, 1, 0, 1, 1, 8.888);
+
+            //WriteMessage("<<<<<------------LoadPresetWithPrice------------>>>>>>");
+
+            var teste = EZInterface.PaymentReserve(1, 35, "hash");
+
+            if(GoodResult(EZInterface.PaymentAuthorise(1, 35, "", -1, -1, -1, -1, 9, 77, 0, 1, 0, 7.777, 2, 30.000, 3, 0, 0, "", "", "", "")))
+            {
+                WriteMessage("Teste");
+            }
+
+        }
+
+        #region Ver preço
+        private void buttonSeePrice_Click(object sender, EventArgs e)
+        {
+            int Id = 1;
+            int Ct = 0;
+            int Number = 0;
+            int PumpID = 0;
+            int TankID = 0;
+            int PhysicalNumber = 0;
+            double MtrTheoValue = 0;
+            double MtrTheoVolume = 0;
+            double MtrElecValue = 0;
+            double MtrElecVolume = 0;
+            short UVEAntenna = 0;
+            double Price1 = 0;
+            double Price2 = 0;
+            short Enabled = 0;
+
+            WriteMessage("<<<<----------GetHoseProperties ---------->>>>>");
+
+            if (!GoodResult(EZInterface.GetHosesCount(ref Ct)))
+                return;
+
+            for (Id = 1; Id <= Ct; Id++)
+            {
+                if (GoodResult(EZInterface.GetHosePropertiesEx2(Id, ref Number, ref PumpID, ref TankID,
+                                                                      ref PhysicalNumber, ref MtrTheoValue,
+                                                                      ref MtrTheoVolume, ref MtrElecValue,
+                                                                      ref MtrElecVolume, ref UVEAntenna,
+                                                                      ref Price1, ref Price2,
+                                                                      ref Enabled)))
+                {
+                    WriteMessage("     ID: " + Id + ", Bico: " + Number + ",  PumpID: " + PumpID + ",  TankID: " + TankID);
+                    WriteMessage("        MtrTheoValue: " + MtrTheoValue + ",  MtrTheoVolume: " + MtrTheoVolume + ",  PhisicalNumber: " + PhysicalNumber);
+                    WriteMessage("        MtrElecValue: " + MtrElecValue + ",  MtrElecVolume: " + MtrElecVolume);
+                    WriteMessage("        UVEAntena: " + UVEAntenna + ",  Price1: R$" + Price1 + ",  Price2: R$" + Price2 + ",  Enables: " + Enabled);
+                }
+            }
+        }
+        #endregion
+
+        #region Consultar Entrega
+        private void buttonConsultarEntrega_Click(object sender, EventArgs e)
+        {
+            Int32 Count = 0;
+            Int16 DeviceType = 3; //TANK_ALR
+            Int32 DeviceId = -1; //NULL_ID - Pegar todos os valores 
+            Int32 DeviceNumber = 0;
+            string DeviceName = "";
+            string EventDesc = "";
+            Int16 EventLevel = -1;
+            Int16 EventType = -1;
+            Int32 ClearedBy = -2;
+            Int32 AckedBy = -2;
+            DateTime GeneretedDT = new DateTime();
+            DateTime ClearedDT = new DateTime();
+            double Volume = 0;
+            double Value = 0;
+            double ProductVolume = 0;
+            double ProductLevel = 0;
+            double WaterLevel = 0;
+            double Temperature = 0;
+
+            int Id = 0;
+
+            //Testando a conexão
+            if (GoodResult(EZInterface.TestConnection()))
+            {
+                if (EZInterface.GetLogEventCount(ref Count, DeviceType, DeviceId, EventLevel, EventType, ClearedBy, AckedBy) != 0)
+                    return;
+
+                WriteMessage("[Eventos " + Count + "]---------------------------------------------------"); //Vem com o Count preenchido corretamento de acordo com o filtro que passei.
+
+                for (int Index = 1; Index <= Count; Index++)
+                {
+                    if (EZInterface.GetLogEventByOrdinal(Index, ref Id, DeviceType, DeviceId, EventLevel, EventType, ClearedBy, AckedBy) != 0)
+                        return;
+
+                    if (GoodResult(EZInterface.GetLogEventProperties(Id, ref DeviceType, ref DeviceId, ref DeviceNumber,
+                                                            ref DeviceName, ref EventLevel, ref EventType, ref EventDesc,
+                                                            ref GeneretedDT, ref ClearedDT, ref ClearedBy, ref AckedBy,
+                                                            ref Volume, ref Value, ref ProductVolume, ref ProductLevel,
+                                                            ref WaterLevel, ref Temperature)))
+                    {
+                        WriteMessage("Id: " + Id + ", DType: " + DeviceType + ", DId: " + DeviceId +
+                                    ", DNumber: " + DeviceNumber + ", DName: " + DeviceName +
+                                    ", ELevel: " + EventLevel + ", EType: " + EventType +
+                                    ", EDesc: " + EventDesc + ", GDate: " + GeneretedDT +
+                                    ", CDate: " + ClearedDT + ", CBy: " + ClearedBy +
+                                    ", ABy: " + AckedBy + ", Volume: " + ", Value: " + Value +
+                                    ", PVolume: " + ProductVolume + ", PLevel: " + ProductLevel +
+                                    ", WLevel: " + WaterLevel + ", Temp: " + Temperature);
+                    }
+                }
+            }
         }
         #endregion
     }
