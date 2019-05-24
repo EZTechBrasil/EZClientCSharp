@@ -674,6 +674,8 @@ namespace EZClientCSharp
             if (EZInterface.TestConnection() != 0)
                 return;
 
+            WriteMessage("Leitura de cartão solicitada!");
+
             if (GoodResult(EZInterface.GetNextCardReadEvent(ref CardReadID, ref Number, ref Name,
                                                              ref PumpID, ref CardType, ref ParentID,
                                                              ref Tag, ref TimeStamp)))
@@ -980,7 +982,12 @@ namespace EZClientCSharp
             int Id = 0;
             int Number = 0;
             int GradeID = 0;
+            int GradeNumber = 0;
+            int GaugeID = 0;
+            int GaugeAlarmsMask = 0;
             short TType = 0;
+            short State = 0;
+            short ProbeNo = 0;
             double Capacity = 0;
             double Diameter = 0;
             double TheoVolume = 0;
@@ -991,10 +998,10 @@ namespace EZClientCSharp
             double GaugeLevel = 0;
             double GaugeWaterVolume = 0;
             double GaugeWaterLevel = 0;
-            int GaugeID = 0;
-            short ProbeNo = 0;
-            int GaugeAlarmsMask = 0;
 
+            String GradeName = "";
+            String GradeShortName = "";
+            String GradeCode = "";
             String Name = "";
 
             //--------------------------------------------------------------------
@@ -1004,12 +1011,45 @@ namespace EZClientCSharp
 
             WriteMessage("[Tanques = " + Ct + "]---------------------------------------------------");
 
+            //Uso do GetTankByNumber
+            //for (Number = 1; Number <= Ct; Number++)
+            //{
+                //if (!GoodResult(EZInterface.GetTankByNumber(Number, ref Id)))
+                //    return;
+            //    WriteMessage("Número: " + Number + ", Id: " + Id);
+            //}
+
+            //Uso do GetTankByName
+            //String TankName = "Tank1";
+            //if(!GoodResult(EZInterface.GetTankByName(TankName, ref Id)))
+            //    return;
+            //WriteMessage("Nome do tanque: " + TankName + ", Id: " + Id);
+
+            //Uso do SetTankProperties(Ex)
+            //if(GoodResult(EZInterface.SetTankPropertiesEx(Id, Number, Name, GradeID, TType, 
+            //                                                Capacity, Diameter, TheoVolume, GaugeVolume,
+            //                                                GaugeTCVolume, GaugeUllage, GaugeTemperature,
+            //                                                GaugeLevel, GaugeWaterVolume, GaugeWaterLevel,
+            //                                                GaugeID, ProbeNo, GaugeAlarmsMask)))
+
+            //Uso do DeleteTank
+            //if(!GoodResult(EZInterface.DeleteTank(Id)))
+
             for (Idx = 1; Idx <= Ct; Idx++)
             {
                 if (EZInterface.GetTankByOrdinal(Idx, ref Id) != 0)
                     return;
 
-                if (GoodResult(EZInterface.GetTankPropertiesEx(Id, ref Number, ref Name, ref GradeID,
+                //Uso do GetTankSummary
+                //if (GoodResult(EZInterface.GetTankSummaryEx(Id, ref Number, ref Name, ref GradeID,
+                //    ref GradeNumber, ref GradeName, ref GradeShortName, ref GradeCode, ref TType, ref Capacity, ref Diameter,
+                //    ref TheoVolume, ref GaugeVolume,
+                //    ref GaugeTCVolume, ref GaugeUllage,
+                //    ref GaugeTemperature, ref GaugeLevel,
+                //    ref GaugeWaterVolume, ref GaugeWaterLevel,
+                //    ref GaugeID, ref ProbeNo, ref State, ref GaugeAlarmsMask))
+
+                    if (GoodResult(EZInterface.GetTankPropertiesEx(Id, ref Number, ref Name, ref GradeID,
                                                                   ref TType, ref Capacity, ref Diameter,
                                                                   ref TheoVolume, ref GaugeVolume,
                                                                   ref GaugeTCVolume, ref GaugeUllage,
@@ -1591,24 +1631,6 @@ namespace EZClientCSharp
         }
         #endregion
 
-        private void buttonTeste_Click(object sender, EventArgs e)
-        {
-            //var teste = EZInterface.SetHosePrices(1, 1, 1, 3.333, 0);
-            // WriteMessage("<<<<<------------SetHosePrices------------>>>>>>");
-
-            //EZInterface.LoadPresetWithPrice(1, 1, 0, 1, 1, 8.888);
-
-            //WriteMessage("<<<<<------------LoadPresetWithPrice------------>>>>>>");
-
-            var teste = EZInterface.PaymentReserve(1, 35, "hash");
-
-            if(GoodResult(EZInterface.PaymentAuthorise(1, 35, "", -1, -1, -1, -1, 9, 77, 0, 1, 0, 7.777, 2, 30.000, 3, 0, 0, "", "", "", "")))
-            {
-                WriteMessage("Teste");
-            }
-
-        }
-
         #region Ver preço
         private void buttonSeePrice_Click(object sender, EventArgs e)
         {
@@ -1706,5 +1728,23 @@ namespace EZClientCSharp
             }
         }
         #endregion
+
+        private void buttonTeste_Click(object sender, EventArgs e)
+        {
+            //var teste = EZInterface.SetHosePrices(1, 1, 1, 3.333, 0);
+            // WriteMessage("<<<<<------------SetHosePrices------------>>>>>>");
+
+            //EZInterface.LoadPresetWithPrice(1, 1, 0, 1, 1, 8.888);
+
+            //WriteMessage("<<<<<------------LoadPresetWithPrice------------>>>>>>");
+
+            var teste = EZInterface.PaymentReserve(1, 35, "hash");
+
+            if(GoodResult(EZInterface.PaymentAuthorise(1, 35, "", -1, -1, -1, -1, 9, 77, 0, 1, 0, 7.777, 2, 30.000, 3, 0, 0, "", "", "", "")))
+            {
+                WriteMessage("Teste");
+            }
+
+        }
     }
 }
