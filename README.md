@@ -38,4 +38,4 @@ For more details on APIs, download the development manual.
 
 Questions, report bugs and suggestions
 
-[![Issues](https://github.com/assets/images/help/issues/new_issues_button.png)](https://github.com/EZTechBrasil/EZClientCSharp/issues)
+[![Issues](https://help.github.com/assets/images/help/issues/new_issues_button.png)](https://github.com/EZTechBrasil/EZClientCSharp/issues)
