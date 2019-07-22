@@ -9,7 +9,7 @@ This project aims to assist partners in integrating with the EZTech service, usi
 To install the EZClientC# project follow these steps:
 
 ## Step 1 - Clone or Download Project:
-[![CloneProject](https://github.com/EZTechBrasil/EZClientCpp/blob/Eric/Pictures/clone-repo-clone-url-button.png)](https://help.github.com/articles/cloning-a-repository/)
+[![CloneProject](https://github.com/EZTechBrasil/EZClientCpp/blob/master/Pictures/clone-repo-clone-url-button.png)](https://help.github.com/articles/cloning-a-repository/)
 
 ## Step 2 - Requirements for execution:
 
