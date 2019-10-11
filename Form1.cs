@@ -598,7 +598,7 @@ namespace EZClientCSharp
                  ref CardClientID, ref CardClientNumber, ref CardClientName, ref CardClientTag)))
             {
 
-            
+
 
                 // Primeiro abastecimento pode ser invalido
                 if (DeliveryID > 0)
@@ -650,7 +650,7 @@ namespace EZClientCSharp
                                     ",PeakFlowRate= " + PeakFlowRate);
 
                     WriteMessage("            Bico Equivalente CBC: " + CompanyID((short)HoseNumber, (short)PumpNumber));
-                    
+
                 }
             }
         }
@@ -659,7 +659,7 @@ namespace EZClientCSharp
 
         #region Evento de Leitura de Cartão
         private void EventCardRead()
-        { 
+        {
             int CardReadID = 0;
             int Number = 0;
             short CardType = 0;
@@ -723,7 +723,7 @@ namespace EZClientCSharp
                         WriteMessage("\n           Unknown Tag type: " + CardType + "  Tag " + Tag);
                         break;
                 }
-                
+
                 GoodResult(EZInterface.DeleteCardRead(CardReadID));
             }
         }
@@ -1014,8 +1014,8 @@ namespace EZClientCSharp
             //Uso do GetTankByNumber
             //for (Number = 1; Number <= Ct; Number++)
             //{
-                //if (!GoodResult(EZInterface.GetTankByNumber(Number, ref Id)))
-                //    return;
+            //if (!GoodResult(EZInterface.GetTankByNumber(Number, ref Id)))
+            //    return;
             //    WriteMessage("Número: " + Number + ", Id: " + Id);
             //}
 
@@ -1049,13 +1049,13 @@ namespace EZClientCSharp
                 //    ref GaugeWaterVolume, ref GaugeWaterLevel,
                 //    ref GaugeID, ref ProbeNo, ref State, ref GaugeAlarmsMask))
 
-                    if (GoodResult(EZInterface.GetTankPropertiesEx(Id, ref Number, ref Name, ref GradeID,
-                                                                  ref TType, ref Capacity, ref Diameter,
-                                                                  ref TheoVolume, ref GaugeVolume,
-                                                                  ref GaugeTCVolume, ref GaugeUllage,
-                                                                  ref GaugeTemperature, ref GaugeLevel,
-                                                                  ref GaugeWaterVolume, ref GaugeWaterLevel,
-                                                                  ref GaugeID, ref ProbeNo, ref GaugeAlarmsMask)))
+                if (GoodResult(EZInterface.GetTankPropertiesEx(Id, ref Number, ref Name, ref GradeID,
+                                                              ref TType, ref Capacity, ref Diameter,
+                                                              ref TheoVolume, ref GaugeVolume,
+                                                              ref GaugeTCVolume, ref GaugeUllage,
+                                                              ref GaugeTemperature, ref GaugeLevel,
+                                                              ref GaugeWaterVolume, ref GaugeWaterLevel,
+                                                              ref GaugeID, ref ProbeNo, ref GaugeAlarmsMask)))
                 {
                     WriteMessage("  Tanque: " + Number + ",  Nome: " + Name + ",  Produto: " + GradeID + ",  Tipo: " + TType);
                     WriteMessage("     Capacidade: " + Capacity + "  Diametro: " + Diameter);
@@ -1625,7 +1625,7 @@ namespace EZClientCSharp
                 return;
             if (!GoodResult(EZInterface.GetHosesCount(ref num)))
                 return;
-            
+
             //1 Bomba com o Id 1 = total de 4 bicos
             WriteMessage("Quantidade de bicos " + num);
         }
@@ -1740,11 +1740,54 @@ namespace EZClientCSharp
 
             var teste = EZInterface.PaymentReserve(1, 35, "hash");
 
-            if(GoodResult(EZInterface.PaymentAuthorise(1, 35, "", -1, -1, -1, -1, 9, 77, 0, 1, 0, 7.777, 2, 30.000, 3, 0, 0, "", "", "", "")))
+            if (GoodResult(EZInterface.PaymentAuthorise(1, 35, "", -1, -1, -1, -1, 9, 77, 0, 1, 0, 7.777, 2, 30.000, 3, 0, 0, "", "", "", "")))
             {
                 WriteMessage("Teste");
             }
 
+        }
+
+        private void LerProdutosComplementares_Click(object sender, EventArgs e)
+        {
+            int quantidadeRegistros = 0;
+            int Id = 0;
+
+            // Verifica se esta conectado ao servidor
+            if (EZInterface.TestConnection() != 0)
+                return;
+
+            // Le o numero de abastecimentos que estão no Ezserver, ou seja, não pegos por nenhum Client.
+            var result = EZInterface.GetSaleItemsCount(ref quantidadeRegistros, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -1, -2, -2);
+
+            if (!GoodResult(result))
+                return;
+
+            if (quantidadeRegistros != 0)
+            {
+
+                WriteMessage("[Produtos " + quantidadeRegistros + "]---------------------------------------------------");
+
+                for (int contador = quantidadeRegistros; contador > 0; contador--)
+                {
+
+                    if (!GoodResult(EZInterface.GetSaleItemByOrdinal(contador, ref Id, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -1, -2, -2)))
+                        return;
+
+
+                    //TODO: Coletar e mostrar na tela valores de produto complementar encontrado.
+
+                    if (GoodResult(EZInterface.SaleItemLockAndClear(Id)))
+                        WriteMessage("Produto " + Id + " resolvido.");
+                    else
+                        continue;
+                }
+            }
+            else
+            {
+                WriteMessage("Sem produtos até o momento.");
+            }
+
+            WriteMessage("------------------------------------------------------------------------");
         }
     }
 }

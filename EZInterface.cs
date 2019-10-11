@@ -11,7 +11,7 @@ namespace EZClientCSharp
         // <summary>
         /* Para facilitar o processo de integração, organizamos o código 
          * de acordo com a estrutura do manual de desenvolvimento. */
-         // </summary>
+        // </summary>
 
         #region Tipos de client para o método setTypeClient 
         public const int SINK_MINIMAL_PUMP_EVENT = 0x0000001;
@@ -68,8 +68,8 @@ namespace EZClientCSharp
             ZB_PAN_EVENT,
             ZIGBEE_CMD_EVENT,
             ZIGBEE_RAW_EVENT,
-            CARD_READ_EVENT ,
-            ZB2G_STATUS_EVENT ,
+            CARD_READ_EVENT,
+            ZB2G_STATUS_EVENT,
             LOG_EVENT_EVENT
         }
 
@@ -570,7 +570,7 @@ namespace EZClientCSharp
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetPumpStatusEx2(Int32 ID, ref Int32 PumpNumber, [MarshalAs(UnmanagedType.BStr)] ref string PumpName, ref Int32 PhysicalNumber, ref Int16 Status, ref Int16 ReservedFor, ref Int32 ReservedBy, ref Int32 HoseID, ref Int16 HoseNumber, ref Int32 HosePhysicalNumber, ref Int32 GradeID, ref Int32 GradeNumber, [MarshalAs(UnmanagedType.BStr)] ref string GradeName, [MarshalAs(UnmanagedType.BStr)] ref string ShortGradeName, ref Int16 PriceLevel, ref Double Price, ref Double Volume, ref Double Value, ref Int16 StackSize,
-                       ref Int64 Tag, ref Int32 AttendantID, ref Int32 AttendantNumber, [MarshalAs(UnmanagedType.BStr)] ref string AttendantName, ref Int64 AttendantTag, ref Int32 CardClientID, ref Int32 CardClientNumber, [MarshalAs(UnmanagedType.BStr)] ref string CardClientName, ref Int64 CardClientTag, ref Double CurFlowRate , ref Double PeakFlowRate );
+                       ref Int64 Tag, ref Int32 AttendantID, ref Int32 AttendantNumber, [MarshalAs(UnmanagedType.BStr)] ref string AttendantName, ref Int64 AttendantTag, ref Int32 CardClientID, ref Int32 CardClientNumber, [MarshalAs(UnmanagedType.BStr)] ref string CardClientName, ref Int64 CardClientTag, ref Double CurFlowRate, ref Double PeakFlowRate);
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.BStr)]
@@ -791,10 +791,10 @@ namespace EZClientCSharp
         internal static extern Int32 GetDeliveriesCountNotVolLogged(ref Int32 Count);
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
-        internal static extern Int32 GetAllDeliveriesCount( ref Int32 Count);
+        internal static extern Int32 GetAllDeliveriesCount(ref Int32 Count);
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
-        internal static extern Int32 GetAllDeliveryByOrdinal( Int32 Index, ref Int32 ID);
+        internal static extern Int32 GetAllDeliveryByOrdinal(Int32 Index, ref Int32 ID);
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetDeliverySummary(Int32 ID, ref Int32 HoseID, ref Int32 HoseNumber, ref Int32 HosePhysicalNumber,
@@ -852,7 +852,7 @@ namespace EZClientCSharp
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetDeliveryExt(Int32 ID, [MarshalAs(UnmanagedType.BStr)] ref string Plate,
-            ref Double Odometer, ref Double Odometer2, [MarshalAs(UnmanagedType.BStr)] ref string ExtTransactionID, 
+            ref Double Odometer, ref Double Odometer2, [MarshalAs(UnmanagedType.BStr)] ref string ExtTransactionID,
             [MarshalAs(UnmanagedType.BStr)] ref string DriverID, [MarshalAs(UnmanagedType.BStr)] ref string AuthID,
             ref Int16 AuthType);
 
@@ -917,7 +917,7 @@ namespace EZClientCSharp
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetHosePropertiesEx(Int32 ID, ref Int32 Number, ref Int32 PumpID, ref Int32 TankID, ref Int32 PhysicalNumber,
                               ref Double MtrTheoValue, ref Double MtrTheoVolume, ref Double MtrElecValue,
-                              ref Double MtrElecVolume, ref Int16 UVEAntenna );
+                              ref Double MtrElecVolume, ref Int16 UVEAntenna);
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetHosePropertiesEx2(Int32 ID, ref Int32 Number, ref Int32 PumpID, ref Int32 TankID, ref Int32 PhysicalNumber,
@@ -1169,7 +1169,7 @@ namespace EZClientCSharp
         internal static extern Int32 SetCardClientPropertiesEx(Int32 ID, Int32 Number, [MarshalAs(UnmanagedType.BStr)] string Name, [MarshalAs(UnmanagedType.BStr)] string Tag, Int16 Enabled, Int16 PriceLevel, [MarshalAs(UnmanagedType.BStr)] string Plate);
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
-        internal static extern Int32 SetCardClientPropertiesEx2(Int32 ID, Int32 Number, [MarshalAs(UnmanagedType.BStr)] string Name, [MarshalAs(UnmanagedType.BStr)] string Tag, Int16 Enabled, Int16 PriceLevel, [MarshalAs(UnmanagedType.BStr)] string Plate, Int16 GradeType, Int16 CardType,  Int16 LimitType, double Limit, Int16 EntryType, DateTime ExpirationDate, Int64 ParentID);
+        internal static extern Int32 SetCardClientPropertiesEx2(Int32 ID, Int32 Number, [MarshalAs(UnmanagedType.BStr)] string Name, [MarshalAs(UnmanagedType.BStr)] string Tag, Int16 Enabled, Int16 PriceLevel, [MarshalAs(UnmanagedType.BStr)] string Plate, Int16 GradeType, Int16 CardType, Int16 LimitType, double Limit, Int16 EntryType, DateTime ExpirationDate, Int64 ParentID);
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 DeleteCardClient(Int32 ID);
@@ -1200,8 +1200,8 @@ namespace EZClientCSharp
         internal static extern Int32 DeleteCardRead(Int32 ID);
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
-        internal static extern Int32 GetCardType([MarshalAs(UnmanagedType.BStr)] string Tag, 
-            ref Int32 pTagType, ref Int32 pID, [MarshalAs(UnmanagedType.BStr)] 
+        internal static extern Int32 GetCardType([MarshalAs(UnmanagedType.BStr)] string Tag,
+            ref Int32 pTagType, ref Int32 pID, [MarshalAs(UnmanagedType.BStr)]
             ref string pName, ref Int32 pNumber);
 
         #endregion
@@ -1234,26 +1234,26 @@ namespace EZClientCSharp
         #region Sensors (Sensores)
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
-        internal static extern Int32 GetSensorsCount( ref Int32 Count ) ;
+        internal static extern Int32 GetSensorsCount(ref Int32 Count);
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetSensorByNumber(Int32 Number, ref Int32 ID);
-        
+
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetSensorByName([MarshalAs(UnmanagedType.BStr)] string Name, ref Int32 ID);
-        
+
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetSensorByOrdinal(Int32 Index, ref Int32 ID);
-        
+
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetSensorProperties(Int32 ID, ref Int32 Number, [MarshalAs(UnmanagedType.BStr)] ref string Name, ref Int32 PortID, ref Int16 Type, ref Int16 Address, ref Int16 SensorNo);
-        
+
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 SetSensorProperties(Int32 ID, Int32 Number, [MarshalAs(UnmanagedType.BStr)] string Name, Int32 PortID, Int16 Type, Int16 Address, Int16 SensorNo);
-        
+
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 SetSensorStatus(Int32 ID, Int16 State, Int16 IsResponding);
-        
+
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetSensorStatus(Int32 ID, ref Int16 State, ref Int16 IsResponding);
 
@@ -1266,7 +1266,7 @@ namespace EZClientCSharp
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetLogEventCount(ref Int32 Count, Int16 DeviceType, Int32 DeviceID, Int16 EventLevel, Int16 EventType, Int32 ClearedBy, Int32 AckedBy);
-        
+
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetLogEventByOrdinal(Int32 Index, ref Int32 ID, Int16 DeviceType, Int32 DeviceID, Int16 EventLevel, Int16 EventType, Int32 ClearedBy, Int32 AckedBy);
 
@@ -1294,5 +1294,54 @@ namespace EZClientCSharp
 
         #endregion
 
+        #region SaleItem (Produto complementar)
+
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 SetSaleItemProperties(Int32 ID, Int32 ProductID, Int32 PumpID, Int32 AttendantID, Int32 CardClientID, short PriceLevel, Double Price,
+    Double Quantity, DateTime AddedDT, DateTime ClearedDT, Int32 LockedBy, Int32 ClearedBy, short LoggedDB, short LoggedVolumetric,
+    string Plate, string DriverID, string ExtTransactionID, string AuthID, short AuthType);
+
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 DeleteSaleItem(Int32 ID);
+
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 SaleItemLock(Int32 ID);
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 SaleItemUnlock(Int32 ID);
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 SaleItemClear(Int32 ID);
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 SaleItemLockAndClear(Int32 ID);
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 SaleItemAckDBLog(Int32 ID);
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 SaleItemAckVolLog(Int32 ID);
+
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 GetSaleItemProperties(ref Int32 ID, ref Int32 pProductID, ref Int32 pPumpID, ref Int32 pAttendantID, ref Int32 pCardClientID, ref short pPriceLevel, ref Double pPrice,
+    ref Double pQuantity, ref DateTime pAddedDT, ref DateTime pClearedDT, ref Int32 pLockedBy, ref long pClearedBy, ref short pLoggedDB, ref short pLoggedVolumetric,
+    ref string pPlate, ref string pDriverID, ref string pExtTransactionID, ref string pAuthID, ref short pAuthType);
+
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 GetSaleItemsCount(ref Int32 pCount, Int32 ProductID, Int32 ProductNumber, Int32 PumpID, Int32 PumpNumber, Int32 AttendantID, Int32 AttendantNumber, Int64 AttendantTag, Int32 CardClientID, Int32 CardClientNumber, Int64 CardClientTag, Int32 LockedBy, Int32 ClearedBy, short LoggedDB, short LoggedVolumetric);
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 GetSaleItemByOrdinal(Int32 Index, ref Int32 pID, Int32 ProductID, Int32 ProductNumber, Int32 PumpID, Int32 PumpNumber, Int32 AttendantID, Int32 AttendantNumber, Int64 AttendantTag, Int32 CardClientID, Int32 CardClientNumber, Int64 CardClientTag, Int32 LockedBy, Int32 ClearedBy, short LoggedDB, short LoggedVolumetric);
+
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 GetSaleItemsCountEx(ref Int32 pCount, ref Int32 ProductID, ref Int32 ProductNumber, ref Int32 PumpID, ref Int32 PumpNumber, ref Int32 AttendantID, ref Int32 AttendantNumber, ref Int64 AttendantTag, ref Int32 CardClientID, ref Int32 CardClientNumber, ref Int64 CardClientTag, ref Int32 LockedBy, ref Int32 ClearedBy, ref short LoggedDB, ref short LoggedVolumetric, ref DateTime StartDT, ref DateTime EndDT);
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 GetSaleItemByOrdinalEx(ref Int32 Index, ref Int32 pID, ref Int32 ProductID, ref Int32 ProductNumber, ref Int32 PumpID, ref Int32 PumpNumber, ref Int32 AttendantID, ref Int32 AttendantNumber, ref Int64 AttendantTag, ref Int32 CardClientID, ref Int32 CardClientNumber, ref Int64 CardClientTag, ref Int32 LockedBy, ref Int32 ClearedBy, ref short LoggedDB, ref short LoggedVolumetric, ref DateTime StartDT, ref DateTime EndDT);
+
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 GetSaleItemSummary(ref Int32 ID, ref Int32 pProductID, ref Int32 pProductNumber, ref string pProductName, ref Int64 pProductTag, ref Int32 pProductGroup, ref string pProductGroupName, ref string pBarcode,
+            ref Int32 pPumpID, ref Int32 pPumpNumber, ref string pPumpName,
+            ref Int32 pAttendantID, ref Int32 pAttendantNumber, ref string pAttendantName, ref Int64 pAttendantTag,
+            ref Int32 pCardClientID, ref Int32 pCardClientNumber, ref string pCardClientName, ref Int64 pCardClientTag,
+            ref short pPriceLevel, ref Double pPrice, ref Double pQuantity, ref DateTime pAddedDT, ref DateTime pClearedDT,
+            ref Int32 pLockedBy, ref Int32 pClearedBy, ref short pLoggedDB, ref short pLoggedVolumetric,
+            ref string pPlate, ref string pDriverID, ref string pExtTransactionID, ref string pAuthID, short pAuthType);
+
+
+        #endregion
     }
 }
