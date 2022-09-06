@@ -13,6 +13,9 @@ namespace EZClientCSharp
     {
         private byte[] lastStates = new byte[100];
 
+        private int MyClientID = 35;
+
+
         public Form1()
         {
             InitializeComponent();
@@ -85,7 +88,17 @@ namespace EZClientCSharp
 
             MSG = EZInterface.ResultString(res);
 
-            WriteMessage("        *** Error: (" + res + ") " + MSG);
+            if (res < 0 && res != (int)EZInterface.Result.INVALID_OBJECT_ID)
+            {
+                // invalid result fatal error with the connect 
+                // best to log off and tehn logon again
+                WriteMessage("        *** fatal Error: (" + res + ") " + MSG);
+            }
+            else
+            {
+                // logic error 
+                WriteMessage("        *** Error: (" + res + ") " + MSG);
+            }
 
             return (false);
         }
@@ -104,8 +117,7 @@ namespace EZClientCSharp
         private void btLogon_Click(object sender, EventArgs e)
         {
             short tipoDeCliente;
-            int clienteID = 35;
-            IntPtr iprt = new IntPtr(0);
+             IntPtr iprt = new IntPtr(0);
             DateTime dateTime = DateTime.Now;
 
             if (chProcEvents.Checked)
@@ -117,13 +129,13 @@ namespace EZClientCSharp
             {
                 WriteMessage("Conectando no servidor: " + edServerAddress.Text);
 
-                if (GoodResult(EZInterface.ClientLogonEx(clienteID, tipoDeCliente, edServerAddress.Text, 5123, 5124, 10000, 0, new IntPtr(0), 0)))
+                if (GoodResult(EZInterface.ClientLogonEx(MyClientID, tipoDeCliente, edServerAddress.Text, 5123, 5124, 10000, 0, new IntPtr(0), 0)))
                 {
                     edServerAddress.Enabled = false;
                     chProcEvents.Enabled = false;
                     btLogon.Text = "Logoff";
 
-                    EZInterface.SetClientType(EZInterface.SINK_CLIENT_EVENT);
+                    EZInterface.SetClientType(EZInterface.SINK_MINIMAL_PUMP_EVENT | EZInterface.SINK_FULL_PUMP_EVENT | EZInterface.SINK_DELIVERY_EVENT | EZInterface.SINK_CARD_READ_EVENT | EZInterface.SINK_DB_HOSE_ETOTS_EVENT | EZInterface.SINK_DB_TANK_STATUS_EVENT);
 
                 }
                 if (GoodResult(EZInterface.SetDateTime(dateTime)))
@@ -568,8 +580,8 @@ namespace EZClientCSharp
             Int64 CardClientTag = 0;
             double PeakFlowRate = 0;
 
-            short State = 0;
-            short Type = 0;
+            short DelState = 0;
+            short DelType = 0;
 
             //String cbcID = "";
 
@@ -589,7 +601,7 @@ namespace EZClientCSharp
             if (GoodResult(EZInterface.GetNextDeliveryEventEx3(ref DeliveryID, ref HoseID, ref HoseNumber, ref HosePhysicalNumber, ref PumpID, ref PumpNumber, ref PumpName,
                  ref TankID, ref TankNumber, ref TankName,
                  ref GradeID, ref GradeNumber, ref GradeName, ref GradeShortName, ref GradeCode,
-                 ref State, ref Type, ref Volume, ref PriceLevel,
+                 ref DelState, ref DelType, ref Volume, ref PriceLevel,
                  ref Price, ref Value, ref Volume2, ref CompletedDT, ref LockedBy,
                  ref ReservedBy, ref AttendantID, ref Age, ref ClearedDT,
                  ref OldVolumeETot, ref OldVolume2ETot, ref OldValueETot,
@@ -650,6 +662,17 @@ namespace EZClientCSharp
                                     ",PeakFlowRate= " + PeakFlowRate);
 
                     WriteMessage("            Bico Equivalente CBC: " + CompanyID((short)HoseNumber, (short)PumpNumber));
+
+                    if (LockedBy == -1)
+                    {
+
+                        if (GoodResult(EZInterface.LockDelivery(DeliveryID)))
+                            LockedBy = MyClientID;
+
+                        if ((LockedBy == MyClientID) && (DelState != (short)EZInterface.TDeliveryState.CLEARED))
+                            GoodResult(EZInterface.ClearDelivery(DeliveryID, DelType));
+                    }
+
 
                 }
             }
@@ -1335,11 +1358,11 @@ namespace EZClientCSharp
                             continue;
 
                         if (GoodResult(EZInterface.LockDelivery(Id)))
-                            LockedBy = 1;
+                            LockedBy = MyClientID;
                         else
                             continue;
 
-                        if ((LockedBy == 1) && (State != (short)EZInterface.TDeliveryState.CLEARED))
+                        if ((LockedBy == MyClientID) && (State != (short)EZInterface.TDeliveryState.CLEARED))
                             GoodResult(EZInterface.ClearDelivery(Id, DType));
 
                     }
