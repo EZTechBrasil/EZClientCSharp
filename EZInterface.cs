@@ -115,7 +115,7 @@ namespace EZClientCSharp
             INVALID_EVENTS_SOCKET_RESULT,                     // 05
             INVALID_OBJECT_LINK_RESULT,                       // 06
             INVALID_OBJECT_PARAMETER_RESULT,                  // 07
-            NOT_LOGGED_ON_RESULT,                             // 08
+            NOT_LOGGED_ON_RESULT,                             // 08GetGarde
             ALREADY_LOGGED_ON_RESULT,                         // 09
             INVALID_LOGON_RESULT,                             // 10
             INVALID_CLIENT_TYPE_RESULT,                       // 11
@@ -293,6 +293,96 @@ namespace EZClientCSharp
             DOLLAR_LIMIT_TYPE,
             VOLUME_LIMIT_TYPE
         }
+
+        public enum TLogEventDeviceType : short
+        {
+            SERVER_ALR = 0,
+            PUMP_ALR,
+            TANK_ALR,
+            HOSE_ALR,
+            GRADE_ALR,
+            EZID_ALR,
+            ATTENDANT_ALR,
+            CARD_ALR,
+            PORT_ALR,
+            PROCESS_ALR,
+            POS_ALR,
+            ATG_ALR,
+            SENSOR_ALR,
+            PRICE_SIGN_ALR,
+            PRODUCT_ALR,
+            MVC_ALR,
+            USERDEFINED_ALR,
+        } ;
+
+
+
+
+        public enum TLogEventType : short
+        {
+            INITIALIZE_TALR = 0,
+            TERMINATE_TALR,
+            START_TALR,
+            STOP_TALR,
+            STOP_START_TALR,
+            ADD_TALR,
+            DELETE_TALR,
+            EDIT_TALR,
+            PRICE_TALR,
+            OFFPRICE_TALR,
+            OFFLINE_TALR,
+            ETOT_REVERSE_TALR,
+            ETOT_ZEROED_TALR,
+            MEMORY_TALR,
+            RESET_TALR,
+            MVC_TALR,
+            TANK_LOW_PRODUCT_WARNING_START_TALR = 100,
+            TANK_LOW_PRODUCT_WARNING_END_TALR,
+            TANK_LOW_PRODUCT_ALARM_START_TALR,
+            TANK_LOW_PRODUCT_ALARM_END_TALR,
+            TANK_HI_PRODUCT_WARNING_START_TALR,
+            TANK_HI_PRODUCT_WARNING_END_TALR,
+            TANK_HI_PRODUCT_ALARM_START_TALR,
+            TANK_HI_PRODUCT_ALARM_END_TALR,
+            TANK_HI_WATER_WARNING_START_TALR,
+            TANK_HI_WATER_WARNING_END_TALR,
+            TANK_HI_WATER_ALARM_START_TALR,
+            TANK_HI_WATER_ALARM_END_TALR,
+            TANK_PROBE_STOPPED_RESPONDING_TALR,
+            TANK_PROBE_STARTED_RESPONDING_TALR,
+            TANK_ATG_STOPPED_RESPONDING_TALR,
+            TANK_ATG_STARTED_RESPONDING_TALR,
+            TANK_DROP_START_TALR,
+            TANK_DROP_END_TALR,
+            TANK_DROP_DOCUMENT_TALR,
+            TANK_LEAK_START_TALR,
+            TANK_LEAK_END_TALR,
+            TANK_STATE_TALR,
+            TANK_CONFIG_TALR,
+            TANK_CALIBRATION_ERROR_TALR,
+            ATTENDANT_LOGGED_ON_TALR = 200,
+            ATTENDANT_LOGGED_OFF_TALR,
+            ATTENDANT_CARD_BLOCKED_TALR,
+            ATTENDANT_WRONG_SHIFT_TALR,
+            CLIENT_CARD_BLOCKED_TALR,
+            UNKNOWN_CARD_TALR,
+            SENSOR_ON_TALR = 300,
+            SENSOR_OFF_TALR,
+            MVC_POWER_GOOD_TALR = 400,
+            MVC_POWER_BATT_TALR,
+            MVC_POWER_BAD_TALR,
+            MVC_POWER_OFF_TALR,
+            MVC_TAMPER_START_TALR,
+            MVC_TAMPER_STOP_TALR,
+            MVC_CONFIG_START_TALR,
+            MVC_CONFIG_END_TALR,
+            MVC_CALIBRATION_TALR,
+            MVC_MCM_ACTIVE_TALR,
+            MVC_MCM_INACTIVE_TALR,
+            MVC_TANK_STATE_TALR
+
+        }         ;
+
 
         #endregion
 
@@ -1343,5 +1433,24 @@ namespace EZClientCSharp
 
 
         #endregion
+
+        #region Periods
+
+        public enum TPeriodType : short
+        {
+            SHIFT_PERIOD_TYPE  = 1,
+            DAY_PERIOD_TYPE ,
+            MONTH_PERIOD_TYPE,
+            UNKNOWN_PERIOD_TYPE
+        }
+
+
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 GetPeriod(Int32 ID, short PeriodType, ref Double StartVolume, ref Double StartValue, ref DateTime CloseDT, ref Double EndVolume, ref Double EndValue);
+        [DllImport(DllName, CharSet = CharSet.Unicode)]
+        internal static extern Int32 ClosePeriod(Int32 ID, short PeriodType, DateTime CloseDT);
+
+        #endregion 
+
     }
 }

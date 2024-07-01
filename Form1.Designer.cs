@@ -57,37 +57,42 @@
             this.buttonFinalizarAbastecimento = new System.Windows.Forms.Button();
             this.buttonDesativar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.buttonTeste = new System.Windows.Forms.Button();
+            this.buttonTankDrops = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.PeriodTypesCB = new System.Windows.Forms.ComboBox();
+            this.PrintPeriodBN = new System.Windows.Forms.Button();
+            this.ClosePeriodBN = new System.Windows.Forms.Button();
+            this.buttonTankHistory = new System.Windows.Forms.Button();
+            this.buttonReadTanks = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 20);
-            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label1.Location = new System.Drawing.Point(18, 14);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(147, 29);
+            this.label1.Size = new System.Drawing.Size(99, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "EZForecourt";
             // 
             // edServerAddress
             // 
-            this.edServerAddress.Location = new System.Drawing.Point(196, 9);
-            this.edServerAddress.Margin = new System.Windows.Forms.Padding(7);
+            this.edServerAddress.Location = new System.Drawing.Point(126, 6);
+            this.edServerAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edServerAddress.Name = "edServerAddress";
-            this.edServerAddress.Size = new System.Drawing.Size(727, 35);
+            this.edServerAddress.Size = new System.Drawing.Size(469, 26);
             this.edServerAddress.TabIndex = 1;
             this.edServerAddress.Text = "localhost";
             // 
             // chProcEvents
             // 
             this.chProcEvents.AutoSize = true;
-            this.chProcEvents.Location = new System.Drawing.Point(975, 16);
-            this.chProcEvents.Margin = new System.Windows.Forms.Padding(7);
+            this.chProcEvents.Location = new System.Drawing.Point(627, 11);
+            this.chProcEvents.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chProcEvents.Name = "chProcEvents";
-            this.chProcEvents.Size = new System.Drawing.Size(288, 33);
+            this.chProcEvents.Size = new System.Drawing.Size(195, 24);
             this.chProcEvents.TabIndex = 2;
             this.chProcEvents.Text = "Processar por Eventos";
             this.chProcEvents.UseVisualStyleBackColor = true;
@@ -100,10 +105,10 @@
             // 
             // btLogon
             // 
-            this.btLogon.Location = new System.Drawing.Point(30, 71);
-            this.btLogon.Margin = new System.Windows.Forms.Padding(7);
+            this.btLogon.Location = new System.Drawing.Point(19, 49);
+            this.btLogon.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btLogon.Name = "btLogon";
-            this.btLogon.Size = new System.Drawing.Size(280, 51);
+            this.btLogon.Size = new System.Drawing.Size(180, 35);
             this.btLogon.TabIndex = 3;
             this.btLogon.Text = "Logon";
             this.btLogon.UseVisualStyleBackColor = true;
@@ -111,10 +116,10 @@
             // 
             // btCheckConnection
             // 
-            this.btCheckConnection.Location = new System.Drawing.Point(322, 71);
-            this.btCheckConnection.Margin = new System.Windows.Forms.Padding(7);
+            this.btCheckConnection.Location = new System.Drawing.Point(207, 49);
+            this.btCheckConnection.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btCheckConnection.Name = "btCheckConnection";
-            this.btCheckConnection.Size = new System.Drawing.Size(280, 51);
+            this.btCheckConnection.Size = new System.Drawing.Size(180, 35);
             this.btCheckConnection.TabIndex = 4;
             this.btCheckConnection.Text = "Verificar Conexão";
             this.btCheckConnection.UseVisualStyleBackColor = true;
@@ -122,10 +127,10 @@
             // 
             // btLoadConfig
             // 
-            this.btLoadConfig.Location = new System.Drawing.Point(616, 71);
-            this.btLoadConfig.Margin = new System.Windows.Forms.Padding(7);
+            this.btLoadConfig.Location = new System.Drawing.Point(396, 49);
+            this.btLoadConfig.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btLoadConfig.Name = "btLoadConfig";
-            this.btLoadConfig.Size = new System.Drawing.Size(280, 51);
+            this.btLoadConfig.Size = new System.Drawing.Size(180, 35);
             this.btLoadConfig.TabIndex = 5;
             this.btLoadConfig.Text = "Ler Configuração";
             this.btLoadConfig.UseVisualStyleBackColor = true;
@@ -133,10 +138,10 @@
             // 
             // btGetAllDeliveries
             // 
-            this.btGetAllDeliveries.Location = new System.Drawing.Point(910, 71);
-            this.btGetAllDeliveries.Margin = new System.Windows.Forms.Padding(7);
+            this.btGetAllDeliveries.Location = new System.Drawing.Point(585, 49);
+            this.btGetAllDeliveries.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btGetAllDeliveries.Name = "btGetAllDeliveries";
-            this.btGetAllDeliveries.Size = new System.Drawing.Size(280, 51);
+            this.btGetAllDeliveries.Size = new System.Drawing.Size(180, 35);
             this.btGetAllDeliveries.TabIndex = 6;
             this.btGetAllDeliveries.Text = "Ler Abastecimentos";
             this.btGetAllDeliveries.UseVisualStyleBackColor = true;
@@ -144,10 +149,10 @@
             // 
             // btClearMessages
             // 
-            this.btClearMessages.Location = new System.Drawing.Point(1204, 71);
-            this.btClearMessages.Margin = new System.Windows.Forms.Padding(7);
+            this.btClearMessages.Location = new System.Drawing.Point(774, 49);
+            this.btClearMessages.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btClearMessages.Name = "btClearMessages";
-            this.btClearMessages.Size = new System.Drawing.Size(280, 51);
+            this.btClearMessages.Size = new System.Drawing.Size(180, 35);
             this.btClearMessages.TabIndex = 7;
             this.btClearMessages.Text = "Limpar Mensagens";
             this.btClearMessages.UseVisualStyleBackColor = true;
@@ -156,57 +161,57 @@
             // cbPump
             // 
             this.cbPump.FormattingEnabled = true;
-            this.cbPump.Location = new System.Drawing.Point(320, 136);
-            this.cbPump.Margin = new System.Windows.Forms.Padding(7);
+            this.cbPump.Location = new System.Drawing.Point(132, 97);
+            this.cbPump.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbPump.Name = "cbPump";
-            this.cbPump.Size = new System.Drawing.Size(277, 37);
+            this.cbPump.Size = new System.Drawing.Size(179, 28);
             this.cbPump.TabIndex = 8;
             // 
             // cbHose
             // 
             this.cbHose.FormattingEnabled = true;
-            this.cbHose.Location = new System.Drawing.Point(910, 136);
-            this.cbHose.Margin = new System.Windows.Forms.Padding(7);
+            this.cbHose.Location = new System.Drawing.Point(585, 94);
+            this.cbHose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbHose.Name = "cbHose";
-            this.cbHose.Size = new System.Drawing.Size(277, 37);
+            this.cbHose.Size = new System.Drawing.Size(179, 28);
             this.cbHose.TabIndex = 9;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(154, 143);
-            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label2.Location = new System.Drawing.Point(25, 99);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(140, 29);
+            this.label2.Size = new System.Drawing.Size(93, 20);
             this.label2.TabIndex = 10;
             this.label2.Text = "Bomba / PA";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(212, 203);
-            this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label4.Location = new System.Drawing.Point(62, 140);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 29);
+            this.label4.Size = new System.Drawing.Size(63, 20);
             this.label4.TabIndex = 14;
             this.label4.Text = "Preço 1";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(793, 205);
-            this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label5.Location = new System.Drawing.Point(510, 141);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 29);
+            this.label5.Size = new System.Drawing.Size(63, 20);
             this.label5.TabIndex = 15;
             this.label5.Text = "Preço 2";
             // 
             // btChangePrice
             // 
-            this.btChangePrice.Location = new System.Drawing.Point(1204, 187);
-            this.btChangePrice.Margin = new System.Windows.Forms.Padding(7);
+            this.btChangePrice.Location = new System.Drawing.Point(774, 129);
+            this.btChangePrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btChangePrice.Name = "btChangePrice";
-            this.btChangePrice.Size = new System.Drawing.Size(280, 51);
+            this.btChangePrice.Size = new System.Drawing.Size(180, 35);
             this.btChangePrice.TabIndex = 16;
             this.btChangePrice.Text = "Trocar Preço";
             this.btChangePrice.UseVisualStyleBackColor = true;
@@ -214,22 +219,22 @@
             // 
             // edPrice1
             // 
-            this.edPrice1.Location = new System.Drawing.Point(317, 196);
-            this.edPrice1.Margin = new System.Windows.Forms.Padding(7);
+            this.edPrice1.Location = new System.Drawing.Point(130, 135);
+            this.edPrice1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edPrice1.Mask = "#.000";
             this.edPrice1.Name = "edPrice1";
-            this.edPrice1.Size = new System.Drawing.Size(277, 35);
+            this.edPrice1.Size = new System.Drawing.Size(179, 26);
             this.edPrice1.TabIndex = 17;
             this.edPrice1.Text = "0000";
             this.edPrice1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // edPrice2
             // 
-            this.edPrice2.Location = new System.Drawing.Point(908, 199);
-            this.edPrice2.Margin = new System.Windows.Forms.Padding(7);
+            this.edPrice2.Location = new System.Drawing.Point(584, 137);
+            this.edPrice2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edPrice2.Mask = "#.000";
             this.edPrice2.Name = "edPrice2";
-            this.edPrice2.Size = new System.Drawing.Size(277, 35);
+            this.edPrice2.Size = new System.Drawing.Size(179, 26);
             this.edPrice2.TabIndex = 18;
             this.edPrice2.Text = "0000";
             this.edPrice2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -237,28 +242,28 @@
             // cbPresetType
             // 
             this.cbPresetType.FormattingEnabled = true;
-            this.cbPresetType.Location = new System.Drawing.Point(315, 254);
-            this.cbPresetType.Margin = new System.Windows.Forms.Padding(7);
+            this.cbPresetType.Location = new System.Drawing.Point(129, 175);
+            this.cbPresetType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbPresetType.Name = "cbPresetType";
-            this.cbPresetType.Size = new System.Drawing.Size(277, 37);
+            this.cbPresetType.Size = new System.Drawing.Size(179, 28);
             this.cbPresetType.TabIndex = 19;
             // 
             // edPreset
             // 
-            this.edPreset.Location = new System.Drawing.Point(908, 257);
-            this.edPreset.Margin = new System.Windows.Forms.Padding(7);
+            this.edPreset.Location = new System.Drawing.Point(584, 177);
+            this.edPreset.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edPreset.Mask = "##0.000";
             this.edPreset.Name = "edPreset";
-            this.edPreset.Size = new System.Drawing.Size(277, 35);
+            this.edPreset.Size = new System.Drawing.Size(179, 26);
             this.edPreset.TabIndex = 20;
             this.edPreset.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btPreset
             // 
-            this.btPreset.Location = new System.Drawing.Point(1204, 254);
-            this.btPreset.Margin = new System.Windows.Forms.Padding(7);
+            this.btPreset.Location = new System.Drawing.Point(774, 175);
+            this.btPreset.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btPreset.Name = "btPreset";
-            this.btPreset.Size = new System.Drawing.Size(280, 51);
+            this.btPreset.Size = new System.Drawing.Size(180, 35);
             this.btPreset.TabIndex = 21;
             this.btPreset.Text = "Predeterminação";
             this.btPreset.UseVisualStyleBackColor = true;
@@ -266,10 +271,10 @@
             // 
             // btAuthorize
             // 
-            this.btAuthorize.Location = new System.Drawing.Point(28, 326);
-            this.btAuthorize.Margin = new System.Windows.Forms.Padding(7);
+            this.btAuthorize.Location = new System.Drawing.Point(18, 225);
+            this.btAuthorize.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btAuthorize.Name = "btAuthorize";
-            this.btAuthorize.Size = new System.Drawing.Size(280, 51);
+            this.btAuthorize.Size = new System.Drawing.Size(180, 35);
             this.btAuthorize.TabIndex = 22;
             this.btAuthorize.Text = "Autoriza Bomba";
             this.btAuthorize.UseVisualStyleBackColor = true;
@@ -277,10 +282,10 @@
             // 
             // btLock
             // 
-            this.btLock.Location = new System.Drawing.Point(322, 326);
-            this.btLock.Margin = new System.Windows.Forms.Padding(7);
+            this.btLock.Location = new System.Drawing.Point(207, 225);
+            this.btLock.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btLock.Name = "btLock";
-            this.btLock.Size = new System.Drawing.Size(280, 51);
+            this.btLock.Size = new System.Drawing.Size(180, 35);
             this.btLock.TabIndex = 23;
             this.btLock.Text = "Bloqueia Bomba";
             this.btLock.UseVisualStyleBackColor = true;
@@ -288,10 +293,10 @@
             // 
             // btTotals
             // 
-            this.btTotals.Location = new System.Drawing.Point(616, 326);
-            this.btTotals.Margin = new System.Windows.Forms.Padding(7);
+            this.btTotals.Location = new System.Drawing.Point(396, 225);
+            this.btTotals.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btTotals.Name = "btTotals";
-            this.btTotals.Size = new System.Drawing.Size(280, 51);
+            this.btTotals.Size = new System.Drawing.Size(180, 35);
             this.btTotals.TabIndex = 24;
             this.btTotals.Text = "Ler Encerrantes";
             this.btTotals.UseVisualStyleBackColor = true;
@@ -299,10 +304,10 @@
             // 
             // btReadCards
             // 
-            this.btReadCards.Location = new System.Drawing.Point(910, 326);
-            this.btReadCards.Margin = new System.Windows.Forms.Padding(7);
+            this.btReadCards.Location = new System.Drawing.Point(585, 225);
+            this.btReadCards.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btReadCards.Name = "btReadCards";
-            this.btReadCards.Size = new System.Drawing.Size(280, 51);
+            this.btReadCards.Size = new System.Drawing.Size(180, 35);
             this.btReadCards.TabIndex = 25;
             this.btReadCards.Text = "Ler Cartões";
             this.btReadCards.UseVisualStyleBackColor = true;
@@ -310,24 +315,24 @@
             // 
             // listMessageBox
             // 
-            this.listMessageBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.listMessageBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listMessageBox.FormattingEnabled = true;
             this.listMessageBox.HorizontalScrollbar = true;
-            this.listMessageBox.ItemHeight = 29;
-            this.listMessageBox.Location = new System.Drawing.Point(26, 390);
-            this.listMessageBox.Margin = new System.Windows.Forms.Padding(7);
+            this.listMessageBox.ItemHeight = 20;
+            this.listMessageBox.Location = new System.Drawing.Point(17, 269);
+            this.listMessageBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listMessageBox.Name = "listMessageBox";
-            this.listMessageBox.Size = new System.Drawing.Size(1711, 700);
+            this.listMessageBox.Size = new System.Drawing.Size(1101, 484);
             this.listMessageBox.TabIndex = 26;
             // 
             // buttonFinalizarAbastecimento
             // 
-            this.buttonFinalizarAbastecimento.Location = new System.Drawing.Point(1204, 326);
-            this.buttonFinalizarAbastecimento.Margin = new System.Windows.Forms.Padding(7);
+            this.buttonFinalizarAbastecimento.Location = new System.Drawing.Point(774, 225);
+            this.buttonFinalizarAbastecimento.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonFinalizarAbastecimento.Name = "buttonFinalizarAbastecimento";
-            this.buttonFinalizarAbastecimento.Size = new System.Drawing.Size(280, 51);
+            this.buttonFinalizarAbastecimento.Size = new System.Drawing.Size(180, 35);
             this.buttonFinalizarAbastecimento.TabIndex = 27;
             this.buttonFinalizarAbastecimento.Text = "Finalizar Abast.";
             this.buttonFinalizarAbastecimento.UseVisualStyleBackColor = true;
@@ -335,10 +340,10 @@
             // 
             // buttonDesativar
             // 
-            this.buttonDesativar.Location = new System.Drawing.Point(1498, 71);
-            this.buttonDesativar.Margin = new System.Windows.Forms.Padding(7);
+            this.buttonDesativar.Location = new System.Drawing.Point(969, 42);
+            this.buttonDesativar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonDesativar.Name = "buttonDesativar";
-            this.buttonDesativar.Size = new System.Drawing.Size(233, 51);
+            this.buttonDesativar.Size = new System.Drawing.Size(150, 35);
             this.buttonDesativar.TabIndex = 28;
             this.buttonDesativar.Text = "Desativar Bico";
             this.buttonDesativar.UseVisualStyleBackColor = true;
@@ -347,30 +352,30 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(831, 143);
-            this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label3.Location = new System.Drawing.Point(534, 99);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 29);
+            this.label3.Size = new System.Drawing.Size(40, 20);
             this.label3.TabIndex = 30;
             this.label3.Text = "Bico";
             // 
-            // buttonTeste
+            // buttonTankDrops
             // 
-            this.buttonTeste.Location = new System.Drawing.Point(1535, 143);
-            this.buttonTeste.Margin = new System.Windows.Forms.Padding(7);
-            this.buttonTeste.Name = "buttonTeste";
-            this.buttonTeste.Size = new System.Drawing.Size(175, 51);
-            this.buttonTeste.TabIndex = 31;
-            this.buttonTeste.Text = "Teste";
-            this.buttonTeste.UseVisualStyleBackColor = true;
-            this.buttonTeste.Click += new System.EventHandler(this.buttonTeste_Click);
+            this.buttonTankDrops.Location = new System.Drawing.Point(969, 120);
+            this.buttonTankDrops.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonTankDrops.Name = "buttonTankDrops";
+            this.buttonTankDrops.Size = new System.Drawing.Size(150, 35);
+            this.buttonTankDrops.TabIndex = 31;
+            this.buttonTankDrops.Text = "Entregas";
+            this.buttonTankDrops.UseVisualStyleBackColor = true;
+            this.buttonTankDrops.Click += new System.EventHandler(this.buttonConsultarEntrega_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1535, 207);
-            this.button1.Margin = new System.Windows.Forms.Padding(7);
+            this.button1.Location = new System.Drawing.Point(842, 90);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(175, 51);
+            this.button1.Size = new System.Drawing.Size(112, 35);
             this.button1.TabIndex = 32;
             this.button1.Text = "Ver Preco";
             this.button1.UseVisualStyleBackColor = true;
@@ -379,23 +384,85 @@
             // button2
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button2.Location = new System.Drawing.Point(1507, 284);
-            this.button2.Margin = new System.Windows.Forms.Padding(7);
+            this.button2.Location = new System.Drawing.Point(969, 196);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(231, 92);
+            this.button2.Size = new System.Drawing.Size(148, 63);
             this.button2.TabIndex = 33;
             this.button2.Text = "Ler Produtos Complementares";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.LerProdutosComplementares_Click);
             // 
+            // PeriodTypesCB
+            // 
+            this.PeriodTypesCB.FormattingEnabled = true;
+            this.PeriodTypesCB.Items.AddRange(new object[] {
+            "Shift",
+            "Day",
+            "Month"});
+            this.PeriodTypesCB.Location = new System.Drawing.Point(329, 97);
+            this.PeriodTypesCB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PeriodTypesCB.Name = "PeriodTypesCB";
+            this.PeriodTypesCB.Size = new System.Drawing.Size(179, 28);
+            this.PeriodTypesCB.TabIndex = 34;
+            // 
+            // PrintPeriodBN
+            // 
+            this.PrintPeriodBN.Location = new System.Drawing.Point(329, 129);
+            this.PrintPeriodBN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PrintPeriodBN.Name = "PrintPeriodBN";
+            this.PrintPeriodBN.Size = new System.Drawing.Size(180, 35);
+            this.PrintPeriodBN.TabIndex = 35;
+            this.PrintPeriodBN.Text = "Print period";
+            this.PrintPeriodBN.UseVisualStyleBackColor = true;
+            this.PrintPeriodBN.Click += new System.EventHandler(this.PrintPeriodBN_Click);
+            // 
+            // ClosePeriodBN
+            // 
+            this.ClosePeriodBN.Location = new System.Drawing.Point(329, 172);
+            this.ClosePeriodBN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ClosePeriodBN.Name = "ClosePeriodBN";
+            this.ClosePeriodBN.Size = new System.Drawing.Size(180, 35);
+            this.ClosePeriodBN.TabIndex = 36;
+            this.ClosePeriodBN.Text = "Close period";
+            this.ClosePeriodBN.UseVisualStyleBackColor = true;
+            this.ClosePeriodBN.Click += new System.EventHandler(this.ClosePeriodBN_Click);
+            // 
+            // buttonTankHistory
+            // 
+            this.buttonTankHistory.Location = new System.Drawing.Point(967, 159);
+            this.buttonTankHistory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonTankHistory.Name = "buttonTankHistory";
+            this.buttonTankHistory.Size = new System.Drawing.Size(150, 35);
+            this.buttonTankHistory.TabIndex = 37;
+            this.buttonTankHistory.Text = "Tank history";
+            this.buttonTankHistory.UseVisualStyleBackColor = true;
+            this.buttonTankHistory.Click += new System.EventHandler(this.buttonConsultarHistorico_Click);
+            // 
+            // buttonReadTanks
+            // 
+            this.buttonReadTanks.Location = new System.Drawing.Point(969, 80);
+            this.buttonReadTanks.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonReadTanks.Name = "buttonReadTanks";
+            this.buttonReadTanks.Size = new System.Drawing.Size(150, 35);
+            this.buttonReadTanks.TabIndex = 38;
+            this.buttonReadTanks.Text = "Ler Tanques";
+            this.buttonReadTanks.UseVisualStyleBackColor = true;
+            this.buttonReadTanks.Click += new System.EventHandler(this.buttonReadTanks_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1770, 1133);
+            this.ClientSize = new System.Drawing.Size(1138, 781);
+            this.Controls.Add(this.buttonReadTanks);
+            this.Controls.Add(this.buttonTankHistory);
+            this.Controls.Add(this.ClosePeriodBN);
+            this.Controls.Add(this.PrintPeriodBN);
+            this.Controls.Add(this.PeriodTypesCB);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.buttonTeste);
+            this.Controls.Add(this.buttonTankDrops);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.buttonDesativar);
             this.Controls.Add(this.buttonFinalizarAbastecimento);
@@ -423,7 +490,7 @@
             this.Controls.Add(this.chProcEvents);
             this.Controls.Add(this.edServerAddress);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(7);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "EZClient C# Demo";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -463,9 +530,14 @@
         private System.Windows.Forms.Button buttonFinalizarAbastecimento;
         private System.Windows.Forms.Button buttonDesativar;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button buttonTeste;
+        private System.Windows.Forms.Button buttonTankDrops;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox PeriodTypesCB;
+        private System.Windows.Forms.Button PrintPeriodBN;
+        private System.Windows.Forms.Button ClosePeriodBN;
+        private System.Windows.Forms.Button buttonTankHistory;
+        private System.Windows.Forms.Button buttonReadTanks;
     }
 }
 
