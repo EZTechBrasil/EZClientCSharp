@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
@@ -27,16 +28,16 @@ namespace EZClientCSharp
             Int32 ct = 0;
             String version = "";
 
-            edServerAddress.Text = "192.168.1.111";
+            edServerAddress.Text = "127.0.0.1";
 
             // Carrega lista de bombas
-            for (ct = 1; ct < 32; ct++)
+            for (ct = 1; ct < 12; ct++)
                 cbPump.Items.Add(ct);
 
             cbPump.SelectedIndex = 0;
 
             // Carrega lista de bicos
-            for (ct = 1; ct <= 8; ct++)
+            for (ct = 1; ct <= 4; ct++)
                 cbHose.Items.Add(ct);
 
             cbHose.SelectedIndex = 0;
@@ -62,7 +63,7 @@ namespace EZClientCSharp
         //    PumpNumber: numero da bomba
         // </summary>
         //
-        private String CompanyID(short HoseNumber, short PumpNumber)
+        private static String CompanyID(short HoseNumber, short PumpNumber)
         {
             int Offset;
 
@@ -119,7 +120,7 @@ namespace EZClientCSharp
         private void btLogon_Click(object sender, EventArgs e)
         {
             short tipoDeCliente;
-             IntPtr iprt = new IntPtr(0);
+            IntPtr iprt = new IntPtr(0);
             DateTime dateTime = DateTime.Now;
 
             if (chProcEvents.Checked)
@@ -140,12 +141,17 @@ namespace EZClientCSharp
                     EZInterface.SetClientType(EZInterface.SINK_MINIMAL_PUMP_EVENT | EZInterface.SINK_FULL_PUMP_EVENT | EZInterface.SINK_DELIVERY_EVENT | EZInterface.SINK_CARD_READ_EVENT | EZInterface.SINK_DB_HOSE_ETOTS_EVENT | EZInterface.SINK_DB_TANK_STATUS_EVENT);
 
                 }
+
                 if (GoodResult(EZInterface.SetDateTime(dateTime)))
                     WriteMessage("Data e Hora do concentrador atualizada com sucesso");
 
+                string version = "";
+                if (GoodResult(EZInterface.ServerVersion(ref version)))
+                    WriteMessage("Versão do servidor: " + version);
+
             }
             else
-            {
+            { 
 
                 WriteMessage("Desconectando do servidor: " + edServerAddress.Text);
                 GoodResult(EZInterface.ClientLogoff());
@@ -178,8 +184,8 @@ namespace EZClientCSharp
             DateTime TimeStamp = new DateTime();
 
             // Verifica conexao
-            if (!GoodResult(EZInterface.TestConnection()))
-                return;
+            //if (!GoodResult(EZInterface.TestConnection()))
+            //    return;
 
             while (true)
             {
@@ -252,13 +258,13 @@ namespace EZClientCSharp
             String DeliveriesCount = "";
             int Idx = 0;
             int CurStatus = 0;
-            int CurHose = 0;
-            int CurDelv = 0;
+            //int CurHose = 0;
+            //int CurDelv = 0;
             String StrStatus = "";
 
-            byte[] cstatus;
-            byte[] chose;
-            byte[] cdeliv;
+            byte[] cstatus = { 0 };
+            byte[] chose = { 0 };
+            byte[] cdeliv = { 0 };
 
             System.Text.ASCIIEncoding conv = new System.Text.ASCIIEncoding();
 
@@ -273,16 +279,19 @@ namespace EZClientCSharp
                 if (!GoodResult(EZInterface.GetAllPumpStatuses(ref PumpStates, ref CurrentHose, ref DeliveriesCount)))
                     return;
 
-                cstatus = conv.GetBytes(PumpStates);
-                chose = conv.GetBytes(CurrentHose);
-                cdeliv = conv.GetBytes(DeliveriesCount);
+                if (PumpsCount > 0)
+                {
+                    cstatus = conv.GetBytes(PumpStates);
+                    chose = conv.GetBytes(CurrentHose);
+                    cdeliv = conv.GetBytes(DeliveriesCount);
+                }
 
                 for (Idx = 1; Idx <= PumpsCount; Idx++)
                 {
 
                     CurStatus = cstatus[Idx - 1] - '0'; // EZClient.TPumpState(Ord(PumpStates[Idx])-Ord('0'));
-                    CurHose = chose[Idx - 1] - '0';
-                    CurDelv = cdeliv[Idx - 1] - '0';
+                    //CurHose = chose[Idx - 1] - '0';
+                    //CurDelv = cdeliv[Idx - 1] - '0';
 
                     switch ((EZInterface.TPumpState)CurStatus)                                                                                                      // PAM10)
                     {
@@ -845,8 +854,8 @@ namespace EZClientCSharp
             Int16 MemFree = 0;
 
             // Verifica se esta conectado ao servidor
-            if (EZInterface.TestConnection() != 0)
-                return;
+            //if (EZInterface.TestConnection() != 0)
+            //    return;
 
             if (GoodResult(EZInterface.GetNextZB2GStatusEvent(ref PortID, ref ZBAddress, ref LQI, ref RSSI, ref ParZBAddress, ref ZBChannel, ref MemBlocks, ref MemFree)))
                 WriteMessage("------ ZigBeeEvent:   PortID " + PortID + ",  Endereço ZigBee " + ZBAddress + ", LQI " + LQI + ", RSSI " + RSSI + ", ParZBAddress " + ParZBAddress + ", Canal " + ZBChannel + ", Memória Bloqueada " + MemBlocks + ", Memória Livre " + MemFree);
@@ -1007,11 +1016,11 @@ namespace EZClientCSharp
             int Id = 0;
             int Number = 0;
             int GradeID = 0;
-            int GradeNumber = 0;
+            //int GradeNumber = 0;
             int GaugeID = 0;
             int GaugeAlarmsMask = 0;
             short TType = 0;
-            short State = 0;
+            //short State = 0;
             short ProbeNo = 0;
             double Capacity = 0;
             double Diameter = 0;
@@ -1024,9 +1033,9 @@ namespace EZClientCSharp
             double GaugeWaterVolume = 0;
             double GaugeWaterLevel = 0;
 
-            String GradeName = "";
-            String GradeShortName = "";
-            String GradeCode = "";
+            //String GradeName = "";
+            //String GradeShortName = "";
+            //String GradeCode = "";
             String Name = "";
 
             //--------------------------------------------------------------------
@@ -1171,6 +1180,9 @@ namespace EZClientCSharp
 
             WriteMessage("[Bombas = " + Ct + "]---------------------------------------------------");
 
+            // Carrega lista de bombas
+            cbPump.Items.Clear();
+
             for (Idx = 1; Idx <= Ct; Idx++)
             {
 
@@ -1185,6 +1197,7 @@ namespace EZClientCSharp
                                                                     ref PrepayAllowed, ref PreauthAllowed, ref SlotZigBeeID,
                                                                     ref MuxSlotZigBeeID, ref PriceControl, ref HasPreset)))
                 {
+                    cbPump.Items.Add(Number);
                     WriteMessage("  Bomba: " + Number + ",  Nome: " + Name + ",  PhicalNumber: " + PhysicalNumber + ",  Side: " + Side + ",  Address: " + Address);
                     WriteMessage("     PriceLevel1: " + PriceLevel1 + ",  PriceLevel2: " + PriceLevel2 + ", PriceDspFormat: " + PriceDspFormat);
                     WriteMessage("     PTipe: " + PType + ",  PortID: " + PortID + ",  AttendantID: " + AttendantID + ",  AutoMode: " + AuthMode + ",  StackMode: " + StackMode);
@@ -1289,7 +1302,7 @@ namespace EZClientCSharp
 
         #region Leitura de todos os abastecimentos registrados.
 
-        private void GetDelivery(int DelID, bool ClearDel )
+        private void GetDelivery(int DelID, bool ClearDel)
         {
 
             int HoseID = 0;
@@ -1325,7 +1338,7 @@ namespace EZClientCSharp
                                                                     ref NewVolumeETot, ref NewVolume2ETot,
                                                                     ref NewValueETot, ref Tag, ref Duration, ref ClientID)))
             {
-                WriteMessage("------ Abastecimento: (" + DelID + ") " );
+                WriteMessage("------ Abastecimento: (" + DelID + ") ");
                 WriteMessage("           HoseID " + HoseID + ",  State " + State + ",  Type " + DType);
                 WriteMessage("           Volume " + Volume + ",  PriceLevel " + PriceLevel + ",  Price " + Price + ",  Value " + Value);
                 WriteMessage("           Volume2 " + Volume2 + ",  CompleteDT " + CompletedDT + ",  LockedBy " + LockedBy + ",  ReservedBy " + ReservedBy);
@@ -1359,8 +1372,8 @@ namespace EZClientCSharp
 
 
             // Verifica se esta conectado ao servidor
-            if (EZInterface.TestConnection() != 0)
-                return;
+            //if (EZInterface.TestConnection() != 0)
+            //    return;
 
             // Le o numero de abastecimentos que estão no Ezserver, ou seja, não pegos por nenhum Client.
             if (!GoodResult(EZInterface.GetDeliveriesCount(ref quantidadeDeAbastecimentos)))
@@ -1383,13 +1396,13 @@ namespace EZClientCSharp
                 }
 #else
                 // old to new  
-                for ( int contador = quantidadeDeAbastecimentos; contador > 0; contador--)
+                for (int contador = quantidadeDeAbastecimentos; contador > 0; contador--)
                 {
 
                     if (!GoodResult(EZInterface.GetDeliveryByOrdinal(contador, ref Id)))
                         return;
 
-                    GetDelivery(Id , true );
+                    GetDelivery(Id, true);
 
                 }
 #endif 
@@ -1402,9 +1415,9 @@ namespace EZClientCSharp
 
             WriteMessage("------------------------------------------------------------------------");
         }
-#endregion
+        #endregion
 
-#region Encerrantes
+        #region Encerrantes
         private void btTotals_Click(object sender, EventArgs e)
         {
             int IdBomba = 0;
@@ -1429,8 +1442,8 @@ namespace EZClientCSharp
             Bomba = cbPump.SelectedIndex + 1;   // Le o numero da bomba
 
             // Verifica se esta conectado ao servidor
-            if (EZInterface.TestConnection() != 0)
-                return;
+            //if (EZInterface.TestConnection() != 0)
+            //    return;
 
 
             // Pega Id da Bomba escolhida
@@ -1459,9 +1472,9 @@ namespace EZClientCSharp
                 }
             }
         }
-#endregion
+        #endregion
 
-#region Botão Autoriza Bomba
+        #region Botão Autoriza Bomba
         private void btAuthorize_Click(object sender, EventArgs e)
         {
             int Bomba = 0;
@@ -1470,8 +1483,8 @@ namespace EZClientCSharp
             Bomba = cbPump.SelectedIndex + 1;   // Le o numero da bomba
 
             // Verifica conexao
-            if (!GoodResult(EZInterface.TestConnection()))
-                return;
+            //if (!GoodResult(EZInterface.TestConnection()))
+            //    return;
 
             // Pega Id da Bomba escolhida
             if (!GoodResult(EZInterface.GetPumpByOrdinal(Bomba, ref IdBomba)))
@@ -1482,9 +1495,9 @@ namespace EZClientCSharp
                 WriteMessage("--- Bomba " + Bomba + " Autorizada!");
 
         }
-#endregion
+        #endregion
 
-#region Botão Bloqueio de Bomba
+        #region Botão Bloqueio de Bomba
         private void btLock_Click(object sender, EventArgs e)
         {
             int Bomba = 0;
@@ -1493,8 +1506,8 @@ namespace EZClientCSharp
             Bomba = cbPump.SelectedIndex + 1;   // Le o numero da bomba
 
             // Verifica conexao
-            if (!GoodResult(EZInterface.TestConnection()))
-                return;
+            //if (!GoodResult(EZInterface.TestConnection()))
+            //    return;
 
             // Pega Id da Bomba escolhida
             if (!GoodResult(EZInterface.GetPumpByOrdinal(Bomba, ref IdBomba)))
@@ -1509,9 +1522,9 @@ namespace EZClientCSharp
             //if (GoodResult(EZInterface.CancelAuthorise(IdBomba)))
             //    WriteMessage("--- Bomba " + Bomba + " Desautorizada!");
         }
-#endregion
+        #endregion
 
-#region Botão Troca de Preço
+        #region Botão Troca de Preço
         private void btChangePrice_Click(object sender, EventArgs e)
         {
             int Bomba = 0;
@@ -1563,8 +1576,8 @@ namespace EZClientCSharp
             WriteMessage("--- Bomba " + Bomba + " - Troca de precos");
 
             // Verifica conexao
-            if (!GoodResult(EZInterface.TestConnection()))
-                return;
+            //if (!GoodResult(EZInterface.TestConnection()))
+            //    return;
 
             // Le o numero de bicos cadastrados
             if (!GoodResult(EZInterface.GetHosesCount(ref Bicos)))
@@ -1606,15 +1619,15 @@ namespace EZClientCSharp
                 }
             }
         }
-#endregion
+        #endregion
 
-#region Predeterminação (Preset)
+        #region Predeterminação (Preset)
         private void btPreset_Click(object sender, EventArgs e)
         {
             int Bomba = 0;
             int Bico = 0;
             int IdBomba = 0;
-            int IdBico = 0;
+            //int IdBico = 0;
             short LType = 0;
             double PsValue = 0;
 
@@ -1635,22 +1648,22 @@ namespace EZClientCSharp
             WriteMessage("--- Bomba " + Bomba + " - Preset");
 
             // Verifica conexao
-            if (!GoodResult(EZInterface.TestConnection()))
-                return;
+            //if (!GoodResult(EZInterface.TestConnection()))
+            //    return;
 
             // Pega Id da Bomba escolhida
             if (!GoodResult(EZInterface.GetPumpByOrdinal(Bomba, ref IdBomba)))
                 return;
 
-            IdBico = (1 << (Bico - 1));  // Calcula ID do bico escolhido
+            short HoseMask = HosePosition2Mask(Bico);
 
             // Envia preset para bomba
-            if (GoodResult(EZInterface.LoadPreset(IdBomba, LType, PsValue, (short)IdBico, 1)))
+            if (GoodResult(EZInterface.LoadPreset(IdBomba, LType, PsValue, HoseMask, 1)))
                 WriteMessage("     Preset Enviado: Bomba " + Bomba + " Bico " + Bico + " Tipo " + LType + " Valor " + PsValue + " Nivel 1");
         }
-#endregion
+        #endregion
 
-#region Botão Finalizar Abastecimento
+        #region Botão Finalizar Abastecimento
         private void button1_Click(object sender, EventArgs e)
         {
             int Bomba;
@@ -1659,9 +1672,9 @@ namespace EZClientCSharp
 
             EZInterface.TempStop(Bomba);
         }
-#endregion
+        #endregion
 
-#region Botão Desativar Bico
+        #region Botão Desativar Bico
         private void buttonDesativar_Click(object sender, EventArgs e)
         {
             int Bomba = 0;
@@ -1671,8 +1684,8 @@ namespace EZClientCSharp
             Bomba = cbPump.SelectedIndex + 1;   // Le o numero da bomba
 
             // Verifica conexao
-            if (!GoodResult(EZInterface.TestConnection()))
-                return;
+            //if (!GoodResult(EZInterface.TestConnection()))
+            //    return;
 
             if (!GoodResult(EZInterface.GetHoseByOrdinal(Bomba, ref IdBomba)))
                 return;
@@ -1684,9 +1697,9 @@ namespace EZClientCSharp
             //1 Bomba com o Id 1 = total de 4 bicos
             WriteMessage("Quantidade de bicos " + num);
         }
-#endregion
+        #endregion
 
-#region Ver preço
+        #region Ver preço
         private void buttonSeePrice_Click(object sender, EventArgs e)
         {
             int Id = 1;
@@ -1725,19 +1738,19 @@ namespace EZClientCSharp
                 }
             }
         }
-#endregion
+        #endregion
 
-#region Consultar Entrega
+        #region Consultar Entrega
         private void buttonConsultarEntrega_Click(object sender, EventArgs e)
         {
             Int32 Count = 0;
-            Int16 DeviceType = ( Int16 ) EZInterface.TLogEventDeviceType.TANK_ALR; 
-            Int32 DeviceId = 1; 
+            Int16 DeviceType = (Int16)EZInterface.TLogEventDeviceType.TANK_ALR;
+            Int32 DeviceId = 1;
             Int32 DeviceNumber = 0; // tank Number 1
             string DeviceName = "";
             string EventDesc = "";
             Int16 EventLevel = -1;
-            Int16 EventType = ( Int16 ) EZInterface.TLogEventType.TANK_DROP_END_TALR;
+            Int16 EventType = (Int16)EZInterface.TLogEventType.TANK_DROP_END_TALR;
             Int32 ClearedBy = -2;
             Int32 AckedBy = -2;
             DateTime GeneretedDT = new DateTime();
@@ -1752,14 +1765,15 @@ namespace EZClientCSharp
 
             //Testando a conexão);
             double Volume = 0;
-            if (GoodResult(EZInterface.TestConnection()))
+            //if (GoodResult(EZInterface.TestConnection()))
             {
+                
                 if (EZInterface.GetLogEventCount(ref Count, DeviceType, DeviceId, EventLevel, EventType, ClearedBy, AckedBy) != 0)
                     return;
 
                 WriteMessage("[Eventos " + Count + "]---------------------------------------------------"); //Vem com o Count preenchido corretamento de acordo com o filtro que passei.
 
-                for (int Index = 1; Index <= Count && Index <= 20 ; Index++)
+                for (int Index = 1; Index <= Count && Index <= 20; Index++)
                 {
                     if (EZInterface.GetLogEventByOrdinal(Index, ref Id, DeviceType, DeviceId, EventLevel, EventType, ClearedBy, AckedBy) != 0)
                         return;
@@ -1806,7 +1820,7 @@ namespace EZClientCSharp
 
             //Testando a conexão);
             double Volume = 0;
-            if (GoodResult(EZInterface.TestConnection()))
+            //if (GoodResult(EZInterface.TestConnection()))
             {
                 if (EZInterface.GetLogEventCount(ref Count, DeviceType, DeviceId, EventLevel, EventType, ClearedBy, AckedBy) != 0)
                     return;
@@ -1835,7 +1849,7 @@ namespace EZClientCSharp
             }
         }
 
-#endregion
+        #endregion
 
         private void buttonTeste_Click(object sender, EventArgs e)
         {
@@ -1863,8 +1877,8 @@ namespace EZClientCSharp
             int Id = 0;
 
             // Verifica se esta conectado ao servidor
-            if (EZInterface.TestConnection() != 0)
-                return;
+            //if (EZInterface.TestConnection() != 0)
+            //    return;
 
             // Le o numero de abastecimentos que estão no Ezserver, ou seja, não pegos por nenhum Client.
             var result = EZInterface.GetSaleItemsCount(ref quantidadeRegistros, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -1, -2, -2);
@@ -1900,12 +1914,12 @@ namespace EZClientCSharp
             WriteMessage("------------------------------------------------------------------------");
         }
 
-#region Periods
+        #region Periods
 
         private bool ClosePeriod(short PeriodType, DateTime CloseDT)
         {
 
-            WriteMessage("[Close report " + PeriodType.ToString() + " --- " + CloseDT.ToString() );
+            WriteMessage("[Close report " + PeriodType.ToString() + " --- " + CloseDT.ToString());
             // verify that all if pumps are idle, and if so stop them all 
             if (!GoodResult(EZInterface.AllStopIfIdle()))
             {
@@ -1972,15 +1986,18 @@ namespace EZClientCSharp
             string VolumeUnits = "L";
             string ValueUnits = "$/L";
 
-            WriteMessage("[Period report " + PeriodTypesCB.Items[PeriodType-1].ToString() + " ---------------------------------------------------");
+            WriteMessage("[Period report " + PeriodTypesCB.Items[PeriodType - 1].ToString() + " ---------------------------------------------------");
 
             if (!GoodResult(EZInterface.GetGradesCount(ref GradesCount)))
                 return;
 
             DateTime ReportDate = GetPeriodCloseDT(PeriodType);
 
-            for ( Int32 GradeIndex = 1; GradeIndex <= GradesCount; GradeIndex++ )
-            { 
+            WriteMessage("[- " + ReportDate + "]---------------------------------------------------");
+
+
+            for (Int32 GradeIndex = 1; GradeIndex <= GradesCount; GradeIndex++)
+            {
                 Int32 GradeID = -1;
 
                 if (!GoodResult(EZInterface.GetGradeByOrdinal(GradeIndex, ref GradeID)))
@@ -2078,44 +2095,83 @@ namespace EZClientCSharp
                                              EndVolume, StartVolume, VolumeDelta, VolumeUnits,
                                              EndValue, StartValue, ValueDelta, ValueUnits));
 
-                 }
+                }
 
-                 if (HosesForGrade > 0)
-                 {
+                if (HosesForGrade > 0)
+                {
                     WriteMessage(String.Format("{0,-12}                           {1,10:N2}{2}                           {3,10:N2}{4} ",
-                                             "Total" ,
+                                             "Total",
                                              GradeVolumeTotal, VolumeUnits,
                                              GradeValueTotal, ValueUnits));
 
-                 }
+                }
 
             }
 
             WriteMessage(String.Format("{0,-12}                           {1,10:N2}{2}                           {3,10:N2}{4} ",
-                                            "Grand total", 
+                                            "Grand total",
                                             VolumeTotal, VolumeUnits,
                                             ValueTotal, ValueUnits));
 
 
         }
 
-#endregion
+        #endregion
 
         private void PrintPeriodBN_Click(object sender, EventArgs e)
         {
-            PrintPeriod((short)(PeriodTypesCB.SelectedIndex+1));
+            PrintPeriod((short)(PeriodTypesCB.SelectedIndex + 1));
         }
 
         private void ClosePeriodBN_Click(object sender, EventArgs e)
         {
             DateTime now = System.DateTime.Now;
 
-            ClosePeriod((short)(PeriodTypesCB.SelectedIndex+1), now);
+            ClosePeriod((short)(PeriodTypesCB.SelectedIndex + 1), now);
         }
 
         private void buttonReadTanks_Click(object sender, EventArgs e)
         {
             ListTanks();
+        }
+        private static short HosePosition2Mask( int HosePosition)
+        {
+              return (short)(1 << (HosePosition - 1));
+        }
+
+        private void btTagAuth_Click(object sender, EventArgs e)
+        {
+            int IdBomba = 0;
+            double PsValue = 0;
+
+            Int64 TagID = Int64.Parse(TagTB.Text);
+
+            int Bomba = cbPump.SelectedIndex + 1;   // Le o numero da bomba
+            int Bico =  cbHose.SelectedIndex + 1;
+            short LType = (short)(cbPresetType.SelectedIndex + 2);
+
+            // Verifica se o textbox de Predet. está vazio
+            if (edPreset.MaskCompleted)
+            {
+                PsValue = Convert.ToDouble(edPreset.Text);
+            }
+            else
+            {
+                WriteMessage("Valor informado está incorreto.");
+                return;
+            }
+
+            // Pega Id da Bomba escolhida
+            if (!GoodResult(EZInterface.GetPumpByOrdinal(Bomba, ref IdBomba)))
+                return;
+
+            short HoseMask = HosePosition2Mask(Bico);
+
+            // Envia Autorizacao para bomba
+            if (GoodResult(EZInterface.TagAuthorise(IdBomba, TagID, LType, PsValue, HoseMask , 1)))
+            {
+                WriteMessage("--- Bomba " + Bomba + " Tag Autorizada!");
+            }
         }
     }
 }

@@ -65,34 +65,39 @@
             this.ClosePeriodBN = new System.Windows.Forms.Button();
             this.buttonTankHistory = new System.Windows.Forms.Button();
             this.buttonReadTanks = new System.Windows.Forms.Button();
+            this.TagTB = new System.Windows.Forms.MaskedTextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btTagAuth = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 14);
+            this.label1.Location = new System.Drawing.Point(16, 11);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 20);
+            this.label1.Size = new System.Drawing.Size(81, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "EZForecourt";
             // 
             // edServerAddress
             // 
-            this.edServerAddress.Location = new System.Drawing.Point(126, 6);
-            this.edServerAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.edServerAddress.Location = new System.Drawing.Point(112, 5);
+            this.edServerAddress.Margin = new System.Windows.Forms.Padding(4);
             this.edServerAddress.Name = "edServerAddress";
-            this.edServerAddress.Size = new System.Drawing.Size(469, 26);
+            this.edServerAddress.Size = new System.Drawing.Size(417, 22);
             this.edServerAddress.TabIndex = 1;
             this.edServerAddress.Text = "localhost";
             // 
             // chProcEvents
             // 
             this.chProcEvents.AutoSize = true;
-            this.chProcEvents.Location = new System.Drawing.Point(627, 11);
-            this.chProcEvents.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.chProcEvents.Location = new System.Drawing.Point(557, 9);
+            this.chProcEvents.Margin = new System.Windows.Forms.Padding(4);
             this.chProcEvents.Name = "chProcEvents";
-            this.chProcEvents.Size = new System.Drawing.Size(195, 24);
+            this.chProcEvents.Size = new System.Drawing.Size(166, 20);
             this.chProcEvents.TabIndex = 2;
             this.chProcEvents.Text = "Processar por Eventos";
             this.chProcEvents.UseVisualStyleBackColor = true;
@@ -100,15 +105,15 @@
             // timerAppLoop
             // 
             this.timerAppLoop.Enabled = true;
-            this.timerAppLoop.Interval = 300;
+            this.timerAppLoop.Interval = 1000;
             this.timerAppLoop.Tick += new System.EventHandler(this.timerAppLoop_Tick);
             // 
             // btLogon
             // 
-            this.btLogon.Location = new System.Drawing.Point(19, 49);
-            this.btLogon.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btLogon.Location = new System.Drawing.Point(17, 39);
+            this.btLogon.Margin = new System.Windows.Forms.Padding(4);
             this.btLogon.Name = "btLogon";
-            this.btLogon.Size = new System.Drawing.Size(180, 35);
+            this.btLogon.Size = new System.Drawing.Size(160, 28);
             this.btLogon.TabIndex = 3;
             this.btLogon.Text = "Logon";
             this.btLogon.UseVisualStyleBackColor = true;
@@ -116,10 +121,10 @@
             // 
             // btCheckConnection
             // 
-            this.btCheckConnection.Location = new System.Drawing.Point(207, 49);
-            this.btCheckConnection.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btCheckConnection.Location = new System.Drawing.Point(184, 39);
+            this.btCheckConnection.Margin = new System.Windows.Forms.Padding(4);
             this.btCheckConnection.Name = "btCheckConnection";
-            this.btCheckConnection.Size = new System.Drawing.Size(180, 35);
+            this.btCheckConnection.Size = new System.Drawing.Size(160, 28);
             this.btCheckConnection.TabIndex = 4;
             this.btCheckConnection.Text = "Verificar Conexão";
             this.btCheckConnection.UseVisualStyleBackColor = true;
@@ -127,10 +132,10 @@
             // 
             // btLoadConfig
             // 
-            this.btLoadConfig.Location = new System.Drawing.Point(396, 49);
-            this.btLoadConfig.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btLoadConfig.Location = new System.Drawing.Point(352, 39);
+            this.btLoadConfig.Margin = new System.Windows.Forms.Padding(4);
             this.btLoadConfig.Name = "btLoadConfig";
-            this.btLoadConfig.Size = new System.Drawing.Size(180, 35);
+            this.btLoadConfig.Size = new System.Drawing.Size(160, 28);
             this.btLoadConfig.TabIndex = 5;
             this.btLoadConfig.Text = "Ler Configuração";
             this.btLoadConfig.UseVisualStyleBackColor = true;
@@ -138,10 +143,10 @@
             // 
             // btGetAllDeliveries
             // 
-            this.btGetAllDeliveries.Location = new System.Drawing.Point(585, 49);
-            this.btGetAllDeliveries.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btGetAllDeliveries.Location = new System.Drawing.Point(520, 39);
+            this.btGetAllDeliveries.Margin = new System.Windows.Forms.Padding(4);
             this.btGetAllDeliveries.Name = "btGetAllDeliveries";
-            this.btGetAllDeliveries.Size = new System.Drawing.Size(180, 35);
+            this.btGetAllDeliveries.Size = new System.Drawing.Size(160, 28);
             this.btGetAllDeliveries.TabIndex = 6;
             this.btGetAllDeliveries.Text = "Ler Abastecimentos";
             this.btGetAllDeliveries.UseVisualStyleBackColor = true;
@@ -149,10 +154,10 @@
             // 
             // btClearMessages
             // 
-            this.btClearMessages.Location = new System.Drawing.Point(774, 49);
-            this.btClearMessages.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btClearMessages.Location = new System.Drawing.Point(688, 39);
+            this.btClearMessages.Margin = new System.Windows.Forms.Padding(4);
             this.btClearMessages.Name = "btClearMessages";
-            this.btClearMessages.Size = new System.Drawing.Size(180, 35);
+            this.btClearMessages.Size = new System.Drawing.Size(160, 28);
             this.btClearMessages.TabIndex = 7;
             this.btClearMessages.Text = "Limpar Mensagens";
             this.btClearMessages.UseVisualStyleBackColor = true;
@@ -161,57 +166,57 @@
             // cbPump
             // 
             this.cbPump.FormattingEnabled = true;
-            this.cbPump.Location = new System.Drawing.Point(132, 97);
-            this.cbPump.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbPump.Location = new System.Drawing.Point(107, 75);
+            this.cbPump.Margin = new System.Windows.Forms.Padding(4);
             this.cbPump.Name = "cbPump";
-            this.cbPump.Size = new System.Drawing.Size(179, 28);
+            this.cbPump.Size = new System.Drawing.Size(131, 24);
             this.cbPump.TabIndex = 8;
             // 
             // cbHose
             // 
             this.cbHose.FormattingEnabled = true;
-            this.cbHose.Location = new System.Drawing.Point(585, 94);
-            this.cbHose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbHose.Location = new System.Drawing.Point(332, 75);
+            this.cbHose.Margin = new System.Windows.Forms.Padding(4);
             this.cbHose.Name = "cbHose";
-            this.cbHose.Size = new System.Drawing.Size(179, 28);
+            this.cbHose.Size = new System.Drawing.Size(131, 24);
             this.cbHose.TabIndex = 9;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 99);
+            this.label2.Location = new System.Drawing.Point(22, 79);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 20);
+            this.label2.Size = new System.Drawing.Size(79, 16);
             this.label2.TabIndex = 10;
             this.label2.Text = "Bomba / PA";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(62, 140);
+            this.label4.Location = new System.Drawing.Point(48, 109);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 20);
+            this.label4.Size = new System.Drawing.Size(53, 16);
             this.label4.TabIndex = 14;
             this.label4.Text = "Preço 1";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(510, 141);
+            this.label5.Location = new System.Drawing.Point(268, 109);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 20);
+            this.label5.Size = new System.Drawing.Size(53, 16);
             this.label5.TabIndex = 15;
             this.label5.Text = "Preço 2";
             // 
             // btChangePrice
             // 
-            this.btChangePrice.Location = new System.Drawing.Point(774, 129);
-            this.btChangePrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btChangePrice.Location = new System.Drawing.Point(520, 106);
+            this.btChangePrice.Margin = new System.Windows.Forms.Padding(4);
             this.btChangePrice.Name = "btChangePrice";
-            this.btChangePrice.Size = new System.Drawing.Size(180, 35);
+            this.btChangePrice.Size = new System.Drawing.Size(160, 28);
             this.btChangePrice.TabIndex = 16;
             this.btChangePrice.Text = "Trocar Preço";
             this.btChangePrice.UseVisualStyleBackColor = true;
@@ -219,22 +224,22 @@
             // 
             // edPrice1
             // 
-            this.edPrice1.Location = new System.Drawing.Point(130, 135);
-            this.edPrice1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.edPrice1.Location = new System.Drawing.Point(107, 108);
+            this.edPrice1.Margin = new System.Windows.Forms.Padding(4);
             this.edPrice1.Mask = "#.000";
             this.edPrice1.Name = "edPrice1";
-            this.edPrice1.Size = new System.Drawing.Size(179, 26);
+            this.edPrice1.Size = new System.Drawing.Size(131, 22);
             this.edPrice1.TabIndex = 17;
             this.edPrice1.Text = "0000";
             this.edPrice1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // edPrice2
             // 
-            this.edPrice2.Location = new System.Drawing.Point(584, 137);
-            this.edPrice2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.edPrice2.Location = new System.Drawing.Point(331, 108);
+            this.edPrice2.Margin = new System.Windows.Forms.Padding(4);
             this.edPrice2.Mask = "#.000";
             this.edPrice2.Name = "edPrice2";
-            this.edPrice2.Size = new System.Drawing.Size(179, 26);
+            this.edPrice2.Size = new System.Drawing.Size(131, 22);
             this.edPrice2.TabIndex = 18;
             this.edPrice2.Text = "0000";
             this.edPrice2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -242,28 +247,28 @@
             // cbPresetType
             // 
             this.cbPresetType.FormattingEnabled = true;
-            this.cbPresetType.Location = new System.Drawing.Point(129, 175);
-            this.cbPresetType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbPresetType.Location = new System.Drawing.Point(107, 140);
+            this.cbPresetType.Margin = new System.Windows.Forms.Padding(4);
             this.cbPresetType.Name = "cbPresetType";
-            this.cbPresetType.Size = new System.Drawing.Size(179, 28);
+            this.cbPresetType.Size = new System.Drawing.Size(131, 24);
             this.cbPresetType.TabIndex = 19;
             // 
             // edPreset
             // 
-            this.edPreset.Location = new System.Drawing.Point(584, 177);
-            this.edPreset.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.edPreset.Mask = "##0.000";
+            this.edPreset.Location = new System.Drawing.Point(331, 143);
+            this.edPreset.Margin = new System.Windows.Forms.Padding(4);
+            this.edPreset.Mask = "#.000";
             this.edPreset.Name = "edPreset";
-            this.edPreset.Size = new System.Drawing.Size(179, 26);
+            this.edPreset.Size = new System.Drawing.Size(131, 22);
             this.edPreset.TabIndex = 20;
             this.edPreset.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btPreset
             // 
-            this.btPreset.Location = new System.Drawing.Point(774, 175);
-            this.btPreset.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btPreset.Location = new System.Drawing.Point(520, 140);
+            this.btPreset.Margin = new System.Windows.Forms.Padding(4);
             this.btPreset.Name = "btPreset";
-            this.btPreset.Size = new System.Drawing.Size(180, 35);
+            this.btPreset.Size = new System.Drawing.Size(160, 28);
             this.btPreset.TabIndex = 21;
             this.btPreset.Text = "Predeterminação";
             this.btPreset.UseVisualStyleBackColor = true;
@@ -271,10 +276,10 @@
             // 
             // btAuthorize
             // 
-            this.btAuthorize.Location = new System.Drawing.Point(18, 225);
-            this.btAuthorize.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btAuthorize.Location = new System.Drawing.Point(15, 202);
+            this.btAuthorize.Margin = new System.Windows.Forms.Padding(4);
             this.btAuthorize.Name = "btAuthorize";
-            this.btAuthorize.Size = new System.Drawing.Size(180, 35);
+            this.btAuthorize.Size = new System.Drawing.Size(122, 28);
             this.btAuthorize.TabIndex = 22;
             this.btAuthorize.Text = "Autoriza Bomba";
             this.btAuthorize.UseVisualStyleBackColor = true;
@@ -282,10 +287,10 @@
             // 
             // btLock
             // 
-            this.btLock.Location = new System.Drawing.Point(207, 225);
-            this.btLock.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btLock.Location = new System.Drawing.Point(145, 202);
+            this.btLock.Margin = new System.Windows.Forms.Padding(4);
             this.btLock.Name = "btLock";
-            this.btLock.Size = new System.Drawing.Size(180, 35);
+            this.btLock.Size = new System.Drawing.Size(120, 28);
             this.btLock.TabIndex = 23;
             this.btLock.Text = "Bloqueia Bomba";
             this.btLock.UseVisualStyleBackColor = true;
@@ -293,10 +298,10 @@
             // 
             // btTotals
             // 
-            this.btTotals.Location = new System.Drawing.Point(396, 225);
-            this.btTotals.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btTotals.Location = new System.Drawing.Point(441, 202);
+            this.btTotals.Margin = new System.Windows.Forms.Padding(4);
             this.btTotals.Name = "btTotals";
-            this.btTotals.Size = new System.Drawing.Size(180, 35);
+            this.btTotals.Size = new System.Drawing.Size(124, 28);
             this.btTotals.TabIndex = 24;
             this.btTotals.Text = "Ler Encerrantes";
             this.btTotals.UseVisualStyleBackColor = true;
@@ -304,10 +309,10 @@
             // 
             // btReadCards
             // 
-            this.btReadCards.Location = new System.Drawing.Point(585, 225);
-            this.btReadCards.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btReadCards.Location = new System.Drawing.Point(573, 202);
+            this.btReadCards.Margin = new System.Windows.Forms.Padding(4);
             this.btReadCards.Name = "btReadCards";
-            this.btReadCards.Size = new System.Drawing.Size(180, 35);
+            this.btReadCards.Size = new System.Drawing.Size(107, 28);
             this.btReadCards.TabIndex = 25;
             this.btReadCards.Text = "Ler Cartões";
             this.btReadCards.UseVisualStyleBackColor = true;
@@ -320,19 +325,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listMessageBox.FormattingEnabled = true;
             this.listMessageBox.HorizontalScrollbar = true;
-            this.listMessageBox.ItemHeight = 20;
-            this.listMessageBox.Location = new System.Drawing.Point(17, 269);
-            this.listMessageBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.listMessageBox.ItemHeight = 16;
+            this.listMessageBox.Location = new System.Drawing.Point(15, 247);
+            this.listMessageBox.Margin = new System.Windows.Forms.Padding(4);
             this.listMessageBox.Name = "listMessageBox";
-            this.listMessageBox.Size = new System.Drawing.Size(1101, 484);
+            this.listMessageBox.Size = new System.Drawing.Size(979, 356);
             this.listMessageBox.TabIndex = 26;
             // 
             // buttonFinalizarAbastecimento
             // 
-            this.buttonFinalizarAbastecimento.Location = new System.Drawing.Point(774, 225);
-            this.buttonFinalizarAbastecimento.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonFinalizarAbastecimento.Location = new System.Drawing.Point(688, 202);
+            this.buttonFinalizarAbastecimento.Margin = new System.Windows.Forms.Padding(4);
             this.buttonFinalizarAbastecimento.Name = "buttonFinalizarAbastecimento";
-            this.buttonFinalizarAbastecimento.Size = new System.Drawing.Size(180, 35);
+            this.buttonFinalizarAbastecimento.Size = new System.Drawing.Size(160, 28);
             this.buttonFinalizarAbastecimento.TabIndex = 27;
             this.buttonFinalizarAbastecimento.Text = "Finalizar Abast.";
             this.buttonFinalizarAbastecimento.UseVisualStyleBackColor = true;
@@ -340,10 +345,10 @@
             // 
             // buttonDesativar
             // 
-            this.buttonDesativar.Location = new System.Drawing.Point(969, 42);
-            this.buttonDesativar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonDesativar.Location = new System.Drawing.Point(861, 34);
+            this.buttonDesativar.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDesativar.Name = "buttonDesativar";
-            this.buttonDesativar.Size = new System.Drawing.Size(150, 35);
+            this.buttonDesativar.Size = new System.Drawing.Size(133, 28);
             this.buttonDesativar.TabIndex = 28;
             this.buttonDesativar.Text = "Desativar Bico";
             this.buttonDesativar.UseVisualStyleBackColor = true;
@@ -352,19 +357,19 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(534, 99);
+            this.label3.Location = new System.Drawing.Point(287, 80);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 20);
+            this.label3.Size = new System.Drawing.Size(34, 16);
             this.label3.TabIndex = 30;
             this.label3.Text = "Bico";
             // 
             // buttonTankDrops
             // 
-            this.buttonTankDrops.Location = new System.Drawing.Point(969, 120);
-            this.buttonTankDrops.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonTankDrops.Location = new System.Drawing.Point(859, 106);
+            this.buttonTankDrops.Margin = new System.Windows.Forms.Padding(4);
             this.buttonTankDrops.Name = "buttonTankDrops";
-            this.buttonTankDrops.Size = new System.Drawing.Size(150, 35);
+            this.buttonTankDrops.Size = new System.Drawing.Size(133, 28);
             this.buttonTankDrops.TabIndex = 31;
             this.buttonTankDrops.Text = "Entregas";
             this.buttonTankDrops.UseVisualStyleBackColor = true;
@@ -372,10 +377,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(842, 90);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button1.Location = new System.Drawing.Point(520, 73);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 35);
+            this.button1.Size = new System.Drawing.Size(160, 28);
             this.button1.TabIndex = 32;
             this.button1.Text = "Ver Preco";
             this.button1.UseVisualStyleBackColor = true;
@@ -384,10 +389,10 @@
             // button2
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button2.Location = new System.Drawing.Point(969, 196);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button2.Location = new System.Drawing.Point(860, 180);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(148, 63);
+            this.button2.Size = new System.Drawing.Size(132, 50);
             this.button2.TabIndex = 33;
             this.button2.Text = "Ler Produtos Complementares";
             this.button2.UseVisualStyleBackColor = true;
@@ -400,18 +405,18 @@
             "Shift",
             "Day",
             "Month"});
-            this.PeriodTypesCB.Location = new System.Drawing.Point(329, 97);
-            this.PeriodTypesCB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PeriodTypesCB.Location = new System.Drawing.Point(688, 75);
+            this.PeriodTypesCB.Margin = new System.Windows.Forms.Padding(4);
             this.PeriodTypesCB.Name = "PeriodTypesCB";
-            this.PeriodTypesCB.Size = new System.Drawing.Size(179, 28);
+            this.PeriodTypesCB.Size = new System.Drawing.Size(160, 24);
             this.PeriodTypesCB.TabIndex = 34;
             // 
             // PrintPeriodBN
             // 
-            this.PrintPeriodBN.Location = new System.Drawing.Point(329, 129);
-            this.PrintPeriodBN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PrintPeriodBN.Location = new System.Drawing.Point(688, 106);
+            this.PrintPeriodBN.Margin = new System.Windows.Forms.Padding(4);
             this.PrintPeriodBN.Name = "PrintPeriodBN";
-            this.PrintPeriodBN.Size = new System.Drawing.Size(180, 35);
+            this.PrintPeriodBN.Size = new System.Drawing.Size(160, 28);
             this.PrintPeriodBN.TabIndex = 35;
             this.PrintPeriodBN.Text = "Print period";
             this.PrintPeriodBN.UseVisualStyleBackColor = true;
@@ -419,10 +424,10 @@
             // 
             // ClosePeriodBN
             // 
-            this.ClosePeriodBN.Location = new System.Drawing.Point(329, 172);
-            this.ClosePeriodBN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ClosePeriodBN.Location = new System.Drawing.Point(688, 140);
+            this.ClosePeriodBN.Margin = new System.Windows.Forms.Padding(4);
             this.ClosePeriodBN.Name = "ClosePeriodBN";
-            this.ClosePeriodBN.Size = new System.Drawing.Size(180, 35);
+            this.ClosePeriodBN.Size = new System.Drawing.Size(160, 28);
             this.ClosePeriodBN.TabIndex = 36;
             this.ClosePeriodBN.Text = "Close period";
             this.ClosePeriodBN.UseVisualStyleBackColor = true;
@@ -430,10 +435,10 @@
             // 
             // buttonTankHistory
             // 
-            this.buttonTankHistory.Location = new System.Drawing.Point(967, 159);
-            this.buttonTankHistory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonTankHistory.Location = new System.Drawing.Point(859, 140);
+            this.buttonTankHistory.Margin = new System.Windows.Forms.Padding(4);
             this.buttonTankHistory.Name = "buttonTankHistory";
-            this.buttonTankHistory.Size = new System.Drawing.Size(150, 35);
+            this.buttonTankHistory.Size = new System.Drawing.Size(133, 28);
             this.buttonTankHistory.TabIndex = 37;
             this.buttonTankHistory.Text = "Tank history";
             this.buttonTankHistory.UseVisualStyleBackColor = true;
@@ -441,20 +446,77 @@
             // 
             // buttonReadTanks
             // 
-            this.buttonReadTanks.Location = new System.Drawing.Point(969, 80);
-            this.buttonReadTanks.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonReadTanks.Location = new System.Drawing.Point(859, 72);
+            this.buttonReadTanks.Margin = new System.Windows.Forms.Padding(4);
             this.buttonReadTanks.Name = "buttonReadTanks";
-            this.buttonReadTanks.Size = new System.Drawing.Size(150, 35);
+            this.buttonReadTanks.Size = new System.Drawing.Size(133, 28);
             this.buttonReadTanks.TabIndex = 38;
             this.buttonReadTanks.Text = "Ler Tanques";
             this.buttonReadTanks.UseVisualStyleBackColor = true;
             this.buttonReadTanks.Click += new System.EventHandler(this.buttonReadTanks_Click);
             // 
+            // TagTB
+            // 
+            this.TagTB.Location = new System.Drawing.Point(329, 176);
+            this.TagTB.Margin = new System.Windows.Forms.Padding(4);
+            this.TagTB.Name = "TagTB";
+            this.TagTB.Size = new System.Drawing.Size(131, 22);
+            this.TagTB.TabIndex = 40;
+            this.TagTB.Text = "0";
+            this.TagTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TagTB.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(263, 178);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 16);
+            this.label6.TabIndex = 39;
+            this.label6.Text = "Tag / ID ";
+            // 
+            // btTagAuth
+            // 
+            this.btTagAuth.Location = new System.Drawing.Point(273, 202);
+            this.btTagAuth.Margin = new System.Windows.Forms.Padding(4);
+            this.btTagAuth.Name = "btTagAuth";
+            this.btTagAuth.Size = new System.Drawing.Size(160, 28);
+            this.btTagAuth.TabIndex = 41;
+            this.btTagAuth.Text = "Autoriza com Tag";
+            this.btTagAuth.UseVisualStyleBackColor = true;
+            this.btTagAuth.Click += new System.EventHandler(this.btTagAuth_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(275, 143);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(46, 16);
+            this.label7.TabIndex = 42;
+            this.label7.Text = "Preset";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(24, 143);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(77, 16);
+            this.label8.TabIndex = 43;
+            this.label8.Text = "Tipo Preset";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1138, 781);
+            this.ClientSize = new System.Drawing.Size(1012, 625);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.btTagAuth);
+            this.Controls.Add(this.TagTB);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.buttonReadTanks);
             this.Controls.Add(this.buttonTankHistory);
             this.Controls.Add(this.ClosePeriodBN);
@@ -490,9 +552,9 @@
             this.Controls.Add(this.chProcEvents);
             this.Controls.Add(this.edServerAddress);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
-            this.Text = "EZClient C# Demo";
+            this.Text = "EZClient C# Demo version 2.5.8.3";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -538,6 +600,11 @@
         private System.Windows.Forms.Button ClosePeriodBN;
         private System.Windows.Forms.Button buttonTankHistory;
         private System.Windows.Forms.Button buttonReadTanks;
+        private System.Windows.Forms.MaskedTextBox TagTB;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btTagAuth;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
 

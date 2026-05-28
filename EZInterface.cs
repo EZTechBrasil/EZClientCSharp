@@ -577,12 +577,6 @@ namespace EZClientCSharp
         internal static extern Int32 GetNextDBTriggerEvent(ref Int32 TableID, ref Int32 RowID);
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
-        internal static extern Int32 GetNextAttendantLogonEvent(ref Int32 AttendantID, ref Int32 PumpID);
-
-        [DllImport(DllName, CharSet = CharSet.Unicode)]
-        internal static extern Int32 GetNextAttendantLogoffEvent(ref Int32 AttendantID);
-
-        [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetNextDBTankStatusEvent(ref Int32 TankID, ref Double GaugeVolume, ref Double GaugeTCVolume, ref Double GaugeUllage, ref Double GaugeTemperature, ref Double GaugeLevel, ref Double GaugeWaterVolume, ref Double GaugeWaterLevel);
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
@@ -975,7 +969,7 @@ namespace EZClientCSharp
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        internal static extern string ReserveTypestring(Int16 Type);
+        internal static extern string ReserveTypeString(Int16 Type);
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         internal static extern Int32 GetDuration(Int32 ID, ref Int32 Duration);
@@ -985,11 +979,11 @@ namespace EZClientCSharp
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        internal static extern string DeliveryStatestring(Int16 State);
+        internal static extern string DeliveryStateString(Int16 State);
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        internal static extern string DeliveryTypestring(Int16 Type);
+        internal static extern string DeliveryTypeString(Int16 Type);
 
         #endregion
 
